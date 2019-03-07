@@ -1,0 +1,28 @@
+{
+  "name": "travelagencyapp",
+  "version": "1.0.0",
+  "description": "travel agency app project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paul1005/TravelAgencyApp.git"
+  },
+  "keywords": [
+    "mysql",
+    "node.js",
+    "express",
+    "sequelize"
+  ],
+  "author": "Patrick Jiang, Kyle Browne, Lucy Hu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Paul1005/TravelAgencyApp/issues"
+  },
+  "homepage": "https://github.com/Paul1005/TravelAgencyApp#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
