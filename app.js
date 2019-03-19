@@ -24,6 +24,9 @@ app.get('/', (req, res) => res.send('CONNECTED'));
 
 // Flight routes
 app.use('/flight', require('./routes/flight'));
+app.use('/user', require('./routes/user'));
+app.use('/customer', require('./routes/customer'));
+app.use('/booking', require('./routes/booking'));
 
 const PORT = process.env.PORT || 5000;
 
