@@ -4,7 +4,8 @@
   "description": "travel agency app project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,14 @@
   },
   "homepage": "https://github.com/Paul1005/TravelAgencyApp#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "mysql2": "^1.6.5",
+    "sequelize": "^4.43.0",
+    "yarn": "^1.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
   }
 }
