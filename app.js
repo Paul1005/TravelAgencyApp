@@ -18,7 +18,6 @@ db
 // Use express
 const app = express();
 
-<<<<<<< HEAD
 //Handle bars
 app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -27,13 +26,12 @@ app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Index route
-=======
+
 // Handlebars
 app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 // Test connection
->>>>>>> 324779755cd21edcb242c38545e95ef2980c4039
 app.get('/', (req, res) => res.send('CONNECTED'));
 
 // Routers
