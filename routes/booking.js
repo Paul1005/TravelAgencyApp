@@ -7,8 +7,13 @@ const Booking = require('../models/Booking');
 router.get('/', (req, res) => 
     Booking.findAll()
         .then(booking => {
+            /*
             console.log(booking)
             res.sendStatus(200);
+            */
+           res.render('booking',{
+               booking
+           });
         })
         .catch(err => console.log(err)));
 
@@ -21,4 +26,6 @@ router.get('/', (req, res) =>
         })
         .catch(err => console.log(err)));
 
+
+//add booking
 module.exports = router;

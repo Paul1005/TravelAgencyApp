@@ -1,0 +1,23 @@
+<section id="booking" class="container">
+    <h1>All bookings</h1>
+    
+    {{#each booking}}
+    <div class="booking">
+      <h3>booking ID: {{bookingId}}</h3>
+      <p>{{bookingDate}}</p>
+      <ul>
+        <li>payment amount: {{paymentAmount}}</li>
+        <li>payment method: {{paymentMethod}}</li>
+        <li>user ID: {{userId}}</li>
+        <li>customer ID: {{customerId}}</li>
+        <li>flight ID: {{flightId}}</li>
+      </ul>
+    </div>
+
+    {{else}}
+    <p>no bookings available</p>
+
+    {{/each}}
+    
+
+  </section>

@@ -19,6 +19,13 @@ db
 // use express
 const app = express();
 
+//Handle bars
+app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
+
+//set static folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Index route
 app.get('/', (req, res) => res.send('CONNECTED'));
 
