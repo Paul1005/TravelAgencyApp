@@ -5,6 +5,7 @@ const Flight = db.define('flight', {
     /* attributes */
     flightId: {
         type: Sequelize.INTEGER,
+        autoIncrement: true,
         primaryKey: true
     },
     airline: {
