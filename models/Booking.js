@@ -8,6 +8,7 @@ const Booking = db.define('booking', {
     /* attributes */
     bookingId: {
         type: Sequelize.INTEGER,
+        autoIncrement: true,
         primaryKey: true
     },
     bookingDate: {

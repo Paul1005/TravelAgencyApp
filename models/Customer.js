@@ -5,6 +5,7 @@ const Customer = db.define('customer', {
     /* attributes */
     customerId: {
         type: Sequelize.INTEGER,
+        autoIncrement: true,
         primaryKey: true
     },
     firstName: {
