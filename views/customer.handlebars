@@ -1,0 +1,32 @@
+<section id="search" class="search-wrap">
+    <h1>Find Customers</h1>
+    <form class="search-form">
+        <i class="fas fa-search"></i>
+        <input type="search" name="term" placeholder=" ...">
+        <input type="submit" value="Search">
+    </form>
+</section>
+
+<section id="customer" class="container">
+    <h1>All Customers</h1>
+
+    {{#each customer}}
+    <div class="app">
+        <h3>Customer: {{firstName}} {{lastName}}</h3>
+        <p>customer ID: {{customerId}}</p>
+        <ul>
+            <li>First Name: {{firstName}}</li>
+            <li>Last Name: {{lastName}}</li>
+            <li>Email: {{email}}</li>
+            <li>Telephone: {{telephone}}</li>
+            <li>Address: {{address}}</li>
+        </ul>
+    </div>
+
+    {{else}}
+    <p>Customer Not Found</p>
+
+    {{/each}}
+
+
+</section>
