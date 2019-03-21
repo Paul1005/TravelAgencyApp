@@ -1,8 +1,17 @@
+<section id="search" class="search-wrap">
+    <h1>Find A Booking</h1>
+    <form class="search-form">
+      <i class="fas fa-search"></i>
+      <input type="search" name="term" placeholder="...">
+      <input type="submit" value="Search">
+    </form>
+  </section>
+
 <section id="booking" class="container">
     <h1>All bookings</h1>
     
     {{#each booking}}
-    <div class="booking">
+    <div class="app">
       <h3>booking ID: {{bookingId}}</h3>
       <p>{{bookingDate}}</p>
       <ul>
@@ -21,3 +30,5 @@
     
 
   </section>
+
+  

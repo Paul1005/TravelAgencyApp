@@ -161,7 +161,7 @@ input[type='search'] {
 }
 
 /* Gigs */
-.gig {
+.app {
   background: var(--bg-color);
   border-bottom: 4px solid var(--primary-color);
   color: #fff;
@@ -170,17 +170,17 @@ input[type='search'] {
   box-shadow: var(--box-shadow);
 }
 
-.gig ul {
+.app ul {
   list-style: none;
   display: flex;
 }
 
-.gig li {
+.app li {
   margin-right: 0.5rem;
   padding: 0.6rem;
 }
 
-.gig .tech span {
+.app .tech span {
   color: var(--primary-color);
 }
 
