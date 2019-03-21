@@ -8,14 +8,14 @@
   </section>
 
 <section id="flight" class="container">
-    <h1>All bookings</h1>
+    <h1>All flights</h1>
     
     {{#each flight}}
     <div class="app">
       <h3>Fight ID: {{flightId}}</h3>
+      <p>Flight Date: {{flightDate}}</p>
       <p>{{bookingDate}}</p>
       <ul>
-        <li>Flight Date: {{flightDate}}</li>
         <li>Start Location: {{startLocation}}</li>
         <li>End Location: {{endLocation}}</li>
         <li>Scheduled Leaving Time: {{scheduledLeavingTime}}</li>
