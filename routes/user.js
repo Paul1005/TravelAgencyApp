@@ -7,8 +7,13 @@ const User = require('../models/User');
 router.get('/', (req, res) => 
     User.findAll()
         .then(user => {
+            /* 
             console.log(user)
-            res.sendStatus(200);
+            res.sendStatus(200); 
+            */
+           res.render('user', {
+               user
+           });
         })
         .catch(err => console.log(err)));
 

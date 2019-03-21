@@ -13,7 +13,7 @@ const Flight = db.define('flight', {
         allowNull: false
     },
     flightDate: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
     },
     startLocation: {

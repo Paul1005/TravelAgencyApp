@@ -1,0 +1,30 @@
+<section id="search" class="search-wrap">
+    <h1>Find A User</h1>
+    <form class="search-form">
+      <i class="fas fa-search"></i>
+      <input type="search" name="term" placeholder="...">
+      <input type="submit" value="Search">
+    </form>
+  </section>
+
+<section id="user" class="container">
+    <h1>All a user</h1>
+    
+    {{#each user}}
+    <div class="app">
+      <h3>User ID: {{userId}}</h3>
+      <ul>
+        <li>User Name: {{userName}}</li>
+        <li>User Password: {{userPassword}}</li>
+      </ul>
+    </div>
+
+    {{else}}
+    <p>No user available</p>
+
+    {{/each}}
+    
+
+  </section>
+
+  

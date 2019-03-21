@@ -7,8 +7,13 @@ const Flight = require('../models/Flight');
 router.get('/', (req, res) => 
     Flight.findAll()
         .then(flight => {
+            /* 
             console.log(flight)
-            res.sendStatus(200);
+            res.sendStatus(200); 
+            */
+            res.render('flight', {
+                flight
+            });
         })
         .catch(err => console.log(err)));
 
