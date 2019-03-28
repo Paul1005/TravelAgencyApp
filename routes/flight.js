@@ -18,16 +18,16 @@ router.get('/', (req, res) =>
         .catch(err => console.log(err)));
 
 // Find row(s) in the flight table where startLocation is Vancouver
-router.get('/', (req, res) => 
-    Flight.findOne({where: {startLocation: 'Vancouver'}})
-        .then(flight => {
-            console.log(flight)
-            res.sendStatus(200);
-        })
-        .catch(err => console.log(err)));
+// router.get('/', (req, res) => 
+//     Flight.findOne({where: {startLocation: 'Vancouver'}})
+//         .then(flight => {
+//             console.log(flight)
+//             res.sendStatus(200);
+//         })
+//         .catch(err => console.log(err)));
 
 // Test adding a row
-router.get('/add', (req, res) => {
+router.post('/add', (req, res) => {
     const data = {
         airline: 'Boring PHP Airline',
         flightDate: 30419,

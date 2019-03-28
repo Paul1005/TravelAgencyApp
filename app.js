@@ -22,6 +22,9 @@ const app = express();
 app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
+// Body Parser
+app.use(bodyParser.urlencoded({ extended: false }));
+
 //set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -29,10 +32,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-// Test connection
-app.get('/', (req, res) => res.send('CONNECTED'));
+// Index route
+app.get('/', (req, res) => res.render('index', { layout: 'landing' }));
 
-// Routers
+// Ohter routers
 app.use('/flight', require('./routes/flight'));
 app.use('/user', require('./routes/user'));
 app.use('/customer', require('./routes/customer'));
