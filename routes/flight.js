@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router()
 const db = require('../config/database');
 const Flight = require('../models/Flight');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 // Find all the rows in the flight table 
 router.get('/', (req, res) => 
@@ -50,6 +52,28 @@ router.get('/add', (req, res) => {
         estimatedArrivalTime
     })
         .then(flight => res.redirect('/flight'))
+        .catch(err => console.log(err));
+});
+
+// Search for flights
+router.get('/search', (req, res) => {
+    let {
+        term
+    } = req.query;
+
+    // Make lowercase
+    term = term.toLowerCase();
+
+    Flight.findAll({
+            where: {
+                startLocation: {
+                    [Op.like]: '%' + term + '%'
+                }
+            }
+        })
+        .then(flight => res.render('flight', {
+            flight
+        }))
         .catch(err => console.log(err));
 });
 
