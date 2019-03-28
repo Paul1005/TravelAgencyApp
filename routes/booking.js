@@ -2,19 +2,15 @@ const express = require('express');
 const router = express.Router()
 const db = require('../config/database');
 const Booking = require('../models/Booking');
+const Sequelize = require ('sequelize');
+const Op = Sequelize.Op;
 
 // find all the rows in the booking table 
 router.get('/', (req, res) => 
     Booking.findAll()
-        .then(booking => {
-            /*
-            console.log(booking)
-            res.sendStatus(200);
-            */
-           res.render('booking',{
+        .then(booking => res.render('booking',{
                booking
-           });
-        })
+           }))
         .catch(err => console.log(err)));
 
 // // find the row(s) in booking table where the payment method is Credit
@@ -90,5 +86,17 @@ router.post('/add', (req, res) => {
             .catch(err => console.log(err));
         }
     });
+
+// Search for bookings
+router.get('/search', (req, res) => {
+    let { term } = req.query;
+
+    // Make lowercase
+    term = term.toLowerCase();
+
+    Booking.findAll({ where: { paymentMethod: { [Op.like]: '%' + term + '%' } } })
+        .then(booking => res.render('booking', { booking }))
+        .catch(err => console.log(err));
+});
 
 module.exports = router;
