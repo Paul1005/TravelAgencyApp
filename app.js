@@ -28,10 +28,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Handlebars
-app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
-
 // Index route
 app.get('/', (req, res) => res.render('index', { layout: 'landing' }));
 

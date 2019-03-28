@@ -27,10 +27,10 @@ router.get('/', (req, res) =>
 //         .catch(err => console.log(err)));
 
 // Test adding a row
-router.post('/add', (req, res) => {
+router.get('/add', (req, res) => {
     const data = {
-        airline: 'Boring PHP Airline',
-        flightDate: 30419,
+        airline: 'Boring JS Airline',
+        flightDate: 'Mar-30-2019',
         startLocation: 'Vancouver',
         endLocation: 'Italy',
         scheduledLeavingTime: '12:00',
