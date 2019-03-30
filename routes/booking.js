@@ -105,7 +105,10 @@ router.get('/search', (req, res) => {
         where: {
             // booking Id = bookingIdValue
             bookingId: {
-                [Op.eq]: bookingIdValue
+                [Op.or]: {
+                    [Op.eq]: bookingIdValue,
+                    [Op.between]: [0, 100]
+                }
             }, // AND
             // results contains bookingDateValue OR bookingDateValue = ''
             bookingDate: { 
