@@ -89,14 +89,49 @@ router.post('/add', (req, res) => {
 
 // Search for bookings
 router.get('/search', (req, res) => {
-    let { term } = req.query;
+    // destructure querry object
+    let { bookingIdValue } = req.query;
+    let { bookingDateValue } = req.query;
+    let { paymentMethodValue } = req.query;
+    let { paymentAmountValue } = req.query;
 
     // Make lowercase
-    term = term.toLowerCase();
+    bookingIdValue = bookingIdValue.toLowerCase();
+    bookingDateValue = bookingDateValue.toLowerCase();
+    paymentMethodValue = paymentMethodValue.toLowerCase();
+    paymentAmountValue = paymentAmountValue.toLowerCase();
 
-    Booking.findAll({ where: { paymentMethod: { [Op.like]: '%' + term + '%' } } })
-        .then(booking => res.render('booking', { booking }))
-        .catch(err => console.log(err));
+    Booking.findAll({ 
+        where: {
+            // booking Id = bookingIdValue
+            bookingId: {
+                [Op.eq]: bookingIdValue
+            }, // AND
+            // results contains bookingDateValue OR bookingDateValue = ''
+            bookingDate: { 
+                [Op.or]: {
+                    [Op.like]: '%' + bookingDateValue + '%',
+                    [Op.eq]: ''
+                }
+            }, // AND
+            // results contains paymentMethodValue OR paymentMethodValue = ''
+            paymentMethod: { 
+                [Op.or]: {
+                    [Op.like]: '%' + paymentMethodValue + '%',
+                    [Op.eq]: ''
+                }
+            }, // AND
+            // paymentAmount <= paymentAmountValue OR paymentAmount < 5000
+            paymentAmount: { 
+                [Op.or]: {
+                    [Op.eq]: paymentAmountValue,
+                    [Op.lt]: 5000
+                }
+            },
+        }
+    })
+    .then(booking => res.render('booking', { booking }))
+    .catch(err => console.log(err));
 });
 
 module.exports = router;

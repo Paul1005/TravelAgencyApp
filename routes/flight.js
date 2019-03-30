@@ -9,24 +9,11 @@ const Op = Sequelize.Op;
 router.get('/', (req, res) => 
     Flight.findAll()
         .then(flight => {
-            /* 
-            console.log(flight)
-            res.sendStatus(200); 
-            */
             res.render('flight', {
                 flight
             });
         })
         .catch(err => console.log(err)));
-
-// Find row(s) in the flight table where startLocation is Vancouver
-// router.get('/', (req, res) => 
-//     Flight.findOne({where: {startLocation: 'Vancouver'}})
-//         .then(flight => {
-//             console.log(flight)
-//             res.sendStatus(200);
-//         })
-//         .catch(err => console.log(err)));
 
 // Test adding a row
 router.get('/add', (req, res) => {
@@ -57,23 +44,31 @@ router.get('/add', (req, res) => {
 
 // Search for flights
 router.get('/search', (req, res) => {
-    let {
-        term
-    } = req.query;
-
-    // Make lowercase
-    term = term.toLowerCase();
+    let { airlineValue } = req.query || '';
+    let { flightDateValue } = req.query || '';
+    let { startLocationValue } = req.query || '';
+    let { endLocationValue } = req.query || '';
+    let { scheduledLeavingTimeValue } = req.query || '';
+    let { estimatedArrivalTimeValue } = req.query || '';
+    // make lowercase
+    // airlineValue = airlineValue.toLowerCase();
+    // flightDateValue = flightDateValue.toLowerCase();
+    // startLocationValue = startLocationValue.toLowerCase();
+    // endLocationValue = endLocationValue.toLowerCase();
+    // scheduledLeavingTimeValue = scheduledLeavingTimeValue.toLowerCase();
+    // estimatedArrivalTimeValue = estimatedArrivalTimeValue.toLowerCase();
 
     Flight.findAll({
             where: {
-                startLocation: {
-                    [Op.like]: '%' + term + '%'
-                }
+                airline: {[Op.like]: '%' + airlineValue + '%'},
+                flightDate: {[Op.like]: '%' + flightDateValue + '%'},
+                startLocation: {[Op.like]: '%' + startLocationValue + '%'},
+                endLocation: {[Op.like]: '%' + endLocationValue + '%'},
+                scheduledLeavingTime: {[Op.like]: '%' + scheduledLeavingTimeValue + '%'},
+                estimatedArrivalTime: { [Op.like]: '%' + estimatedArrivalTimeValue +'%' }
             }
         })
-        .then(flight => res.render('flight', {
-            flight
-        }))
+        .then(flight => res.render('flight', { flight }))
         .catch(err => console.log(err));
 });
 

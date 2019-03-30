@@ -119,7 +119,6 @@ header.inner {
   color: #fff;
   margin: 0 0 1.5rem;
   text-align: center;
-  transition: all 0.8s;
 }
 
 .search-form input[type='submit'] {
@@ -129,7 +128,6 @@ header.inner {
   padding: 0 2rem;
   cursor: pointer;
   transition: all 0.8s;
-  margin-left: 486px;
 }
 
 .search-form input[type='submit']:hover {
@@ -138,14 +136,12 @@ header.inner {
 }
 
 .search-form {
-  display: grid;
+  display: flex;
   width: 600px;
   box-shadow: var(--box-shadow);
-  transition: all 0.8s;
 }
 
 .search-form i {
-  background: #fff;
   color: #333;
 }
 
@@ -153,7 +149,7 @@ header.inner {
 .search-form > * {
   border: 0;
   padding: 0 0 0 10px;
-  /* background: #fff; */
+  background: #fff;
   line-height: 50px;
   font-size: 1rem;
   border-radius: 0;
@@ -165,7 +161,7 @@ input[type='search'] {
 }
 
 /* Gigs */
-.app {
+.gig {
   background: var(--bg-color);
   border-bottom: 4px solid var(--primary-color);
   color: #fff;
@@ -174,17 +170,17 @@ input[type='search'] {
   box-shadow: var(--box-shadow);
 }
 
-.app ul {
+.gig ul {
   list-style: none;
   display: flex;
 }
 
-.app li {
+.gig li {
   margin-right: 0.5rem;
   padding: 0.6rem;
 }
 
-.app .tech span {
+.gig .tech span {
   color: var(--primary-color);
 }
 

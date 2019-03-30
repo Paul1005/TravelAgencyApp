@@ -1,9 +1,40 @@
 <section id="search" class="search-wrap">
     <h1>Find a booking</h1>
-    <form action="/booking/search" class="search-form" > 
+    {{!-- Search form for the booking table --}}
+    <form action="/booking/search" class="search-form bg-white" > 
       <i class="fas fa-search"></i>
-      <input type="search" name="term" placeholder="...">
+      {{!-- Booking Id --}}
+      <div class="form-group row">
+        <label for="bookingDateValue" class="col-sm-2 col-form-label">Booking Id</label>
+        <div class="col-sm-10">
+          <input type="search" class="form-control" name="bookingIdValue" id="bookingIdValue" placeholder="1">
+        </div>
+      </div>
+      {{!-- Booking date --}}
+      <div class="form-group row">
+        <label for="bookingDateValue" class="col-sm-2 col-form-label">Booking Date</label>
+        <div class="col-sm-10">
+          <input type="search" class="form-control" name="bookingDateValue" id="bookingDateValue" placeholder="Mar-28-2019">
+        </div>
+      </div>
+      {{!-- Payment method --}}
+      <div class="form-group row">
+        <label for="paymentMethodValue" class="col-sm-2 col-form-label">Payment Method</label>
+        <div class="col-sm-10">
+          <input type="search" class="form-control" name="paymentMethodValue" id="paymentMethodValue" placeholder="credit">
+        </div>
+      </div>
+      {{!-- Payment amount --}}
+      <div class="form-group row">
+        <label for="paymentAmountValue" class="col-sm-2 col-form-label">Payment Amount</label>
+        <div class="col-sm-10">
+          <input type="search" class="form-control" name="paymentAmountValue" id="paymentAmountValue" placeholder="3000">
+        </div>
+      </div>
+
+      {{!-- Submit button --}}
       <input type="submit" value="Search">
+      
     </form>
   </section>
 
@@ -27,8 +58,5 @@
     <p>no bookings available</p>
 
     {{/each}}
-    
 
   </section>
-
-  

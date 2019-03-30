@@ -1,9 +1,36 @@
 <section id="search" class="search-wrap">
     <h1>Find a flight</h1>
+    {{!-- Search form for the flight table --}}
     <form action="/flight/search" class="search-form">
       <i class="fas fa-search"></i>
-      <input type="search" name="term" placeholder="...">
+
+      {{!-- Airline --}}
+      <label for="airlineValue">Airline</label>
+      <input type="search" name="airlineValue" placeholder="Airline: e.g. Air Canada">
+
+      {{!-- Flight Date --}}
+      <label for="flightDateValue">Start Location</label>
+      <input type="search" name="flightDateValue" placeholder="Flight Date: e.g. May-30-2019">
+
+      {{!-- Start Location --}}
+      <label for="startLocationValue">Start Location</label>
+      <input type="search" name="startLocationValue" placeholder="Start Location: e.g. Vancouver">
+
+      {{!-- End Location --}}
+      <label for="endLocationValue">End Location</label>
+      <input type="search" name="endLocationValue" placeholder="End Location: e.g. Los Angeles">
+      
+      {{!-- Scheduled Leaving Time --}}
+      <label for="scheduledLeavingTimeValue">Scheduled Leaving Time</label>
+      <input type="search" name="scheduledLeavingTimeValue" placeholder="Scheduled Leaving Time: e.g. 10:25">
+
+      {{!-- Scheduled Arrival Time --}}
+      <label for="estimatedArrivalTimeValue">Estimated Arrival Time</label>
+      <input type="search" name="estimatedArrivalTimeTimeValue" placeholder="Estimated Arrival Time: e.g. 19:05">
+
+      {{!-- Submit button --}}
       <input type="submit" value="Search">
+
     </form>
   </section>
 
