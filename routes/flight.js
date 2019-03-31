@@ -110,4 +110,22 @@ router.get('/search', (req, res) => {
         .catch(err => console.log(err));
 }); // End of router.get('/search', (req, res)
 
+
+// Search function in Homepage
+router.get('/homeSearch', (req, res) => {
+    let { startLocationValue1 } = req.query;
+    // make lowercase
+    startLocationValue = startLocationValue1.toLowerCase();
+
+    Flight.findAll({
+        where: {
+            startLocation: { [Op.like]: '%' + startLocationValue1 + '%' }
+        } // End of Where
+    }) // End of FindAll
+        .then(flight => res.render('flight', { flight }))
+        .catch(err => console.log(err));
+}); // End of router.get('/search', (req, res)
+
+
+// Export router
 module.exports = router;

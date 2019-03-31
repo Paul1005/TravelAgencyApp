@@ -82,7 +82,7 @@ header.inner {
   color: #fff;
   padding: 0.6rem;
   border: 1px solid #ccc;
-  transition: all 0.7s;
+  transition: all 0.8s;
 }
 
 .btn:hover {
@@ -119,8 +119,16 @@ header.inner {
   color: #fff;
   margin: 0 0 1.5rem;
   text-align: center;
-  transition: all 0.8s;
-  margin-top: 50px;
+  transition: all 2s;
+}
+
+.search-wrap h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #fff;
+  margin: 0 0 1.5rem;
+  text-align: center;
+  transition: all 2s;
 }
 
 .search-form input[type='submit'] {
@@ -129,8 +137,8 @@ header.inner {
   color: #fff;
   padding: 0 2rem;
   cursor: pointer;
-  transition: all 0.8s;
-  margin-left: 486px;
+  margin-left: 240px;
+  transition: all 1.5s;
 }
 
 .search-form input[type='submit']:hover {
@@ -139,12 +147,11 @@ header.inner {
 }
 
 .search-form {
-  /* display: grid; */
-  margin-bottom: 100px;
-  height: auto;
-  width: auto;
   box-shadow: var(--box-shadow);
-  transition: all 0.8s;
+  /* width: auto;
+  height: auto; */
+  min-width: 600px;
+  transition: all 1.5s;
 }
 
 .search-form i {
