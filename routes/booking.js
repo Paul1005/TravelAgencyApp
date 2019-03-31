@@ -94,21 +94,18 @@ router.get('/search', (req, res) => {
 
     Booking.findAll({
         where: {
-            // booking Id = bookingIdValue
+            // bookingId = bookingIdValue
             bookingId: {
-                [Op.or]: {
-                    [Op.eq]: bookingIdValue,
-                    [Op.between]: [0, 100]
-                }
+                [Op.eq]: bookingIdValue
             }, // AND
-            // results contains bookingDateValue OR bookingDateValue = ''
+            // Results contains bookingDateValue OR bookingDateValue = ''
             bookingDate: {
                 [Op.or]: {
                     [Op.like]: '%' + bookingDateValue + '%',
                     [Op.eq]: ''
                 }
             }, // AND
-            // results contains paymentMethodValue OR paymentMethodValue = ''
+            // Results contains paymentMethodValue OR paymentMethodValue = ''
             paymentMethod: {
                 [Op.or]: {
                     [Op.like]: '%' + paymentMethodValue + '%',
@@ -122,11 +119,11 @@ router.get('/search', (req, res) => {
                     [Op.lt]: 5000
                 }
             },
-        }
-    })
+        } // End of Where
+    }) // End of FindAll
         .then(booking => res.render('booking', { booking }))
         .catch(err => console.log(err));
-});
+}); // End of router.get('/search', (req, res)
 
 // Export router
 module.exports = router;

@@ -207,6 +207,7 @@ input[type='search'] {
   margin-top: 3rem;
   border-bottom: 4px solid var(--primary-color);
   box-shadow: var(--box-shadow);
+  transition: all 1.5s;
 }
 
 .form-wrap.reg-form,

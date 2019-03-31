@@ -4,6 +4,14 @@
   <form action="/flight/search" class="search-form bg-white">
     <i class="fas fa-search"></i>
 
+    {{!-- Flight Id --}}
+    <div class="form-group row">
+      <label for="flightIdValue" class="col-sm-4 col-form-label">Flight Id</label>
+      <div class="col-sm-6">
+        <input type="search" class="form-control" name="flightIdValue" id="flightIdValue" placeholder="e.g. 6">
+      </div>
+    </div>
+
     {{!-- Airline --}}
     <div class="form-group row">
       <label for="airlineValue" class="col-sm-4 col-form-label">Airline</label>

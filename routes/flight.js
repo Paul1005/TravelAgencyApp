@@ -46,13 +46,17 @@ router.get('/add', (req, res) => {
 
 /********************************************** Search flights ****************************************************/
 router.get('/search', (req, res) => {
+    // Destructure querry object
+    let { flightIdValue } = req.query;
     let { airlineValue } = req.query;
     let { flightDateValue } = req.query;
     let { startLocationValue } = req.query;
     let { endLocationValue } = req.query;
     let { scheduledLeavingTimeValue } = req.query;
     let { estimatedArrivalTimeValue } = req.query;
-    // make lowercase
+
+    // Make lowercase
+    flightIdValue = flightIdValue.toLowerCase();
     airlineValue = airlineValue.toLowerCase();
     flightDateValue = flightDateValue.toLowerCase();
     startLocationValue = startLocationValue.toLowerCase();
@@ -62,6 +66,10 @@ router.get('/search', (req, res) => {
 
     Flight.findAll({
         where: {
+            // flightId = flightIdValue
+            flightId: {
+                [Op.eq]: flightIdValue
+            }, // AND
             // results contains airlineValue OR ''
             airline: {
                 [Op.or]: {
