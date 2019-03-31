@@ -1,62 +1,65 @@
 <section id="search" class="search-wrap">
-    <h1>Find a booking</h1>
-    {{!-- Search form for the booking table --}}
-    <form action="/booking/search" class="search-form bg-white" > 
-      <i class="fas fa-search"></i>
-      {{!-- Booking Id --}}
-      <div class="form-group row">
-        <label for="bookingIdValue" class="col-sm-2 col-form-label">Booking Id</label>
-        <div class="col-sm-10">
-          <input type="search" class="form-control" name="bookingIdValue" id="bookingIdValue" placeholder="e.g. 1">
-        </div>
+  <h1>Find a booking</h1>
+  {{!-- Search form for the booking table --}}
+  <form action="/booking/search" class="search-form bg-white">
+    <i class="fas fa-search"></i>
+    {{!-- Booking Id --}}
+    <div class="form-group row">
+      <label for="bookingIdValue" class="col-md-4 col-form-label">Booking Id</label>
+      <div class="col-sm-8">
+        <input type="search" class="form-control" name="bookingIdValue" id="bookingIdValue" placeholder="e.g. 1">
       </div>
-      {{!-- Booking date --}}
-      <div class="form-group row">
-        <label for="bookingDateValue" class="col-sm-2 col-form-label">Booking Date</label>
-        <div class="col-sm-10">
-          <input type="search" class="form-control" name="bookingDateValue" id="bookingDateValue" placeholder="e.g. Mar-28-2019">
-        </div>
+    </div>
+    {{!-- Booking date --}}
+    <div class="form-group row">
+      <label for="bookingDateValue" class="col-md-4 col-form-label">Booking Date</label>
+      <div class="col-sm-8">
+        <input type="search" class="form-control" name="bookingDateValue" id="bookingDateValue"
+          placeholder="e.g. Mar-28-2019">
       </div>
-      {{!-- Payment method --}}
-      <div class="form-group row">
-        <label for="paymentMethodValue" class="col-sm-2 col-form-label">Payment Method</label>
-        <div class="col-sm-10">
-          <input type="search" class="form-control" name="paymentMethodValue" id="paymentMethodValue" placeholder="e.g. credit">
-        </div>
+    </div>
+    {{!-- Payment method --}}
+    <div class="form-group row">
+      <label for="paymentMethodValue" class="col-md-4 col-form-label">Payment Method</label>
+      <div class="col-sm-8">
+        <input type="search" class="form-control" name="paymentMethodValue" id="paymentMethodValue"
+          placeholder="e.g. credit">
       </div>
-      {{!-- Payment amount --}}
-      <div class="form-group row">
-        <label for="paymentAmountValue" class="col-sm-2 col-form-label">Payment Amount</label>
-        <div class="col-sm-10">
-          <input type="search" class="form-control" name="paymentAmountValue" id="paymentAmountValue" placeholder="e.g. 3000 (any result < 3000 CAD)">
-        </div>
+    </div>
+    {{!-- Payment amount --}}
+    <div class="form-group row">
+      <label for="paymentAmountValue" class="col-md-4 col-form-label">Payment Amount</label>
+      <div class="col-sm-8">
+        <input type="search" class="form-control" name="paymentAmountValue" id="paymentAmountValue"
+          placeholder="e.g. 3000 (any result < 3000 CAD)">
       </div>
-
-      {{!-- Submit button --}}
-      <input type="submit" value="Search">
-      
-    </form>
-  </section>
-
-<section id="booking" class="container">
-    <h1>All bookings</h1>
-    
-    {{#each booking}}
-    <div class="app">
-      <h3>booking ID: {{bookingId}}</h3>
-      <p>{{bookingDate}}</p>
-      <ul>
-        <li>payment amount: {{paymentAmount}}</li>
-        <li>payment method: {{paymentMethod}}</li>
-        <li>user ID: {{userId}}</li>
-        <li>customer ID: {{customerId}}</li>
-        <li>flight ID: {{flightId}}</li>
-      </ul>
     </div>
 
-    {{else}}
-    <p>no bookings available</p>
+    {{!-- Submit button --}}
+    <input type="submit" value="Search">
 
-    {{/each}}
+  </form>
+</section>
 
-  </section>
+<section id="booking" class="container">
+  <h1>All bookings</h1>
+
+  {{#each booking}}
+  <div class="app">
+    <h3>booking ID: {{bookingId}}</h3>
+    <p>{{bookingDate}}</p>
+    <ul>
+      <li>payment amount: {{paymentAmount}}</li>
+      <li>payment method: {{paymentMethod}}</li>
+      <li>user ID: {{userId}}</li>
+      <li>customer ID: {{customerId}}</li>
+      <li>flight ID: {{flightId}}</li>
+    </ul>
+  </div>
+
+  {{else}}
+  <p>no bookings available</p>
+
+  {{/each}}
+
+</section>

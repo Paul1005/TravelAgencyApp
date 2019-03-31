@@ -120,6 +120,7 @@ header.inner {
   margin: 0 0 1.5rem;
   text-align: center;
   transition: all 0.8s;
+  margin-top: 50px;
 }
 
 .search-form input[type='submit'] {
@@ -140,8 +141,8 @@ header.inner {
 .search-form {
   /* display: grid; */
   margin-bottom: 100px;
-  height: 420px;
-  width: 600px;
+  height: auto;
+  width: auto;
   box-shadow: var(--box-shadow);
   transition: all 0.8s;
 }
