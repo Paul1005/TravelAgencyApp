@@ -19,7 +19,7 @@ db
 const app = express();
 
 //Handle bars
-app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 // Body Parser

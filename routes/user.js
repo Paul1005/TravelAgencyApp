@@ -3,6 +3,8 @@ const router = express.Router()
 const db = require('../config/database');
 const User = require('../models/User');
 const Sequelize = require('sequelize');
+const handlebars = require('handlebars');
+const fs = require('fs');
 const Op = Sequelize.Op;
 
 /****************************************** Display all rows in the user table ************************************/
@@ -36,7 +38,10 @@ router.get('/search', (req, res) => {
         where: {
             // userId = userIdValue
             userId: {
-                [Op.eq]: userIdValue
+                [Op.or]: {
+                    [Op.eq]: userIdValue,
+                    [Op.between]: [0, 100]
+                }
             }, // AND
             // results contains userNameValue OR ''
             userName: {

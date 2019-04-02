@@ -42,7 +42,10 @@ router.get('/search', (req, res) => {
         where: {
             // customerId = customerIdValue
             customerId: {
-                [Op.eq]: customerIdValue
+                [Op.or]: {
+                    [Op.eq]: customerIdValue,
+                    [Op.between]: [0, 100]
+                }
             }, // AND
             // Results contains firstNameValue OR firstNameValue = ''
             firstName: {

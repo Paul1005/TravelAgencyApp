@@ -66,9 +66,10 @@ router.get('/search', (req, res) => {
 
     Flight.findAll({
         where: {
-            // flightId = flightIdValue
+            // flightId = flightIdValue OR flightIdValue = [0, 100] if exact Id not found
             flightId: {
-                [Op.eq]: flightIdValue
+                [Op.eq]: flightIdValue,
+                [Op.between]: [0, 100]
             }, // AND
             // results contains airlineValue OR ''
             airline: {

@@ -16,7 +16,7 @@ router.get('/', (req, res) =>
 
 /********************************************** Add a new booking *************************************************/
 // Display form to add a new booking
-router.get('/add', (req, res) => res.render('add'));
+router.get('/add-booking', (req, res) => res.render('add-booking'));
 
 // Add a booking
 router.post('/add', (req, res) => {
@@ -92,38 +92,87 @@ router.get('/search', (req, res) => {
     paymentMethodValue = paymentMethodValue.toLowerCase();
     paymentAmountValue = paymentAmountValue.toLowerCase();
 
-    Booking.findAll({
-        where: {
-            // bookingId = bookingIdValue
-            bookingId: {
-                [Op.eq]: bookingIdValue
-            }, // AND
-            // Results contains bookingDateValue OR bookingDateValue = ''
-            bookingDate: {
-                [Op.or]: {
-                    [Op.like]: '%' + bookingDateValue + '%',
-                    [Op.eq]: ''
+    // Search unique bookingId
+    if (bookingIdValue != '') {
+        Booking.findAll({
+            where: {
+                // bookingId = bookingIdValue
+                bookingId: { [Op.eq]: bookingIdValue }
+            }
+        })
+            .then(booking => res.render('booking', { booking }))
+            .catch(err => console.log(err));
+
+        // Search all specified payment amount
+    } else if (paymentAmountValue != '') {
+        Booking.findAll({
+            where: {
+                // bookingId = [0, 100]
+                bookingId: {
+                    [Op.between]: [1, 100]
+                }, // AND
+                // Results contains bookingDateValue OR bookingDateValue = ''
+                bookingDate: {
+                    [Op.or]: {
+                        [Op.like]: '%' + bookingDateValue + '%',
+                        [Op.eq]: ''
+                    }
+                }, // AND
+                // Results contains paymentMethodValue OR paymentMethodValue = ''
+                paymentMethod: {
+                    [Op.or]: {
+                        [Op.like]: '%' + paymentMethodValue + '%',
+                        [Op.eq]: ''
+                    }
+                }, // AND
+                // paymentAmount <= paymentAmountValue OR paymentAmount < 5000
+                paymentAmount: {
+                    [Op.or]: {
+                        [Op.lte]: paymentAmountValue,
+                    },
                 }
-            }, // AND
-            // Results contains paymentMethodValue OR paymentMethodValue = ''
-            paymentMethod: {
-                [Op.or]: {
-                    [Op.like]: '%' + paymentMethodValue + '%',
-                    [Op.eq]: ''
+            } // End of Where
+        }) // End of FindAll
+            .then(booking => res.render('booking', { booking }))
+            .catch(err => console.log(err));
+
+        // search specified booking date OR payment method
+    } else if (paymentAmountValue == '') {
+        Booking.findAll({
+            where: {
+                // bookingId = [0, 100]
+                bookingId: {
+                    [Op.between]: [1, 100]
+                }, // AND
+                // Results contains bookingDateValue OR bookingDateValue = ''
+                bookingDate: {
+                    [Op.or]: {
+                        [Op.like]: '%' + bookingDateValue + '%',
+                        [Op.eq]: ''
+                    }
+                }, // AND
+                // Results contains paymentMethodValue OR paymentMethodValue = ''
+                paymentMethod: {
+                    [Op.or]: {
+                        [Op.like]: '%' + paymentMethodValue + '%',
+                        [Op.eq]: ''
+                    }
+                }, // AND
+                // paymentAmount <= paymentAmountValue OR paymentAmount < 5000
+                paymentAmount: {
+                    [Op.or]: {
+                        [Op.lte]: 5000
+                    },
                 }
-            }, // AND
-            // paymentAmount <= paymentAmountValue OR paymentAmount < 5000
-            paymentAmount: {
-                [Op.or]: {
-                    [Op.eq]: paymentAmountValue,
-                    [Op.lt]: 5000
-                }
-            },
-        } // End of Where
-    }) // End of FindAll
-        .then(booking => res.render('booking', { booking }))
-        .catch(err => console.log(err));
+            } // End of Where
+        }) // End of FindAll
+            .then(booking => res.render('booking', { booking }))
+            .catch(err => console.log(err));
+    }
+
 }); // End of router.get('/search', (req, res)
+
+
 
 // Export router
 module.exports = router;

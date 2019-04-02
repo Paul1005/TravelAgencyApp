@@ -40,17 +40,23 @@
 
   {{#each user}}
   <div class="app">
+    {{foo}}
     <h3>User ID: {{userId}}</h3>
     <ul>
       <li>User Name: {{userName}}</li>
       <li>User Password: {{userPassword}}</li>
     </ul>
   </div>
-
-  {{else}}
-  <p>User Not Found</p>
+  {{else}} <p>User Not Found</p>
 
   {{/each}}
-
-
 </section>
+
+<script>
+  function foo(userId) {
+    let row = document.getElementsByClassName("app");
+    let button = document.createElement("button");
+    button.innerText = "Edit";
+    row.appendChild(button);
+  }
+</script>

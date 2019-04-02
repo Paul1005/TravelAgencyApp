@@ -1,5 +1,6 @@
 <section id="search" class="search-wrap">
   <h1>Find a booking</h1>
+
   {{!-- Search form for the booking table --}}
   <form action="/booking/search" class="search-form bg-white">
     <i class="fas fa-search"></i>
@@ -34,11 +35,21 @@
           placeholder="e.g. 3000 (< 3000 CAD)">
       </div>
     </div>
-
     {{!-- Submit button --}}
     <input type="submit" value="Search">
 
+    {{!-- Button to add a booking --}}
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info btn-md add-button">
+        <a href="booking/add-booking">
+          Add a booking
+        </a>
+      </button>
+    </div>
+
+
   </form>
+
 </section>
 
 <section id="booking" class="container">

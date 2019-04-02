@@ -101,6 +101,10 @@ header.inner {
   border: 1px solid var(--primary-hover-color);
 }
 
+.add-button {
+  transition: all 2s;
+}
+
 /* Home Search */
 .search-wrap {
   background: url('../img/travel1.jpg') no-repeat center center fixed / cover;
@@ -119,7 +123,7 @@ header.inner {
   color: #fff;
   margin: 0 0 1.5rem;
   text-align: center;
-  transition: all 2s;
+  transition: all 1s;
 }
 
 .search-wrap h2 {
@@ -128,7 +132,7 @@ header.inner {
   color: #fff;
   margin: 0 0 1.5rem;
   text-align: center;
-  transition: all 2s;
+  transition: all 1s;
 }
 
 .search-form input[type='submit'] {
@@ -138,7 +142,7 @@ header.inner {
   padding: 0 2rem;
   cursor: pointer;
   margin-left: 240px;
-  transition: all 1.5s;
+  transition: all 2s;
 }
 
 .search-form input[type='submit']:hover {
