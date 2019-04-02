@@ -6,7 +6,6 @@
       <input type="submit" value="Search">
     </form>
   </section>
-
 <section id="user" class="container">
     <h1>All a user</h1>
     
@@ -17,14 +16,11 @@
         <li>User Name: {{userName}}</li>
         <li>User Password: {{userPassword}}</li>
       </ul>
+      <button><a href= '/user/delete/' >edit</a></button>
     </div>
 
     {{else}}
     <p>No user available</p>
 
     {{/each}}
-    
-
   </section>
-
-  

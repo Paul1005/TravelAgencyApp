@@ -16,7 +16,6 @@ router.get('/', (req, res) =>
            });
         })
         .catch(err => console.log(err)));
-
 // find the row(s) in flight table where the startLocation is Vancouver
 // router.get('/', (req, res) => 
 //     Flight.findOne({where: {userName: "Patrick111"}})
