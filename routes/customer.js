@@ -16,8 +16,62 @@ router.get('/', (req, res) =>
         .catch(err => console.log(err)));
 
 /********************************************* Add a new customer *************************************************/
+// Display form to add a new customer
+router.get('/add-customer', (req, res) => res.render('add-customer'));
 
+// Add a customer
+router.post('/add', (req, res) => {
+    // destructure the data object
+    let { firstName, lastName, email, telephone, address } = req.body;
+    let errors = [];
 
+    if (!firstName) {
+        errors.push({ text: 'Please add a first name' })
+    }
+    if (!lastName) {
+        errors.push({ text: 'Please add a last name' })
+    }
+    if (!email) {
+        errors.push({ text: 'Please add an email' })
+    }
+    if (!telephone) {
+        errors.push({ text: 'Please add a telephone' })
+    }
+    if (!address) {
+        errors.push({ text: 'Please add an address' })
+    }
+
+    // Check for errors
+    if (errors.length > 0) {
+        res.render('add', {
+            errors,
+            firstName,
+            lastName,
+            email,
+            telephone,
+            address
+        });
+    } else {
+
+        // Make data lowercase
+        firstName = firstName.toLowerCase();
+        lastName = lastName.toLowerCase();
+        email = email.toLowerCase();
+        telephone = telephone.toLowerCase();
+        address = address.toLowerCase();
+
+        // Insert data into the customer table
+        Customer.create({
+            firstName,
+            lastName,
+            email,
+            telephone,
+            address
+        })
+            .then(customer => res.redirect('/customer'))
+            .catch(err => console.log(err));
+    }
+});
 
 
 /********************************************** Search customers **************************************************/
