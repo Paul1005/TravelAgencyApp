@@ -1,5 +1,7 @@
 <section id="search" class="search-wrap">
   <h1>Find a user</h1>
+
+  {{!-- Search form for the user table --}}
   <form action="/user/search" class="search-form bg-white">
     <i class="fas fa-search"></i>
 
@@ -24,7 +26,7 @@
     <div class="form-group row">
       <label for="userPasswordValue" class="col-sm-4 col-form-label">User Password</label>
       <div class="col-sm-8">
-        <input type="search" class="form-control" name="userPasswordValue" id="userPasswordValue"
+        <input type="password" class="form-control" name="userPasswordValue" id="userPasswordValue"
           placeholder="e.g. iam-tired_ok">
       </div>
     </div>
@@ -32,7 +34,17 @@
     {{!-- Submit button --}}
     <input type="submit" value="Search">
 
+    {{!-- Button to add a user --}}
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info btn-md add-button">
+        <a href="user/add-user">
+          Add a user
+        </a>
+      </button>
+    </div>
+
   </form>
+
 </section>
 
 <section id="user" class="container">

@@ -1,6 +1,6 @@
 <section id="add" class="container">
   <div class="form-wrap">
-    <h1>Add a user</h1>
+    <h1>Add a customer</h1>
     <p>Your contact email will be shared with registered users to apply to your booking</p>
     {{#each errors}}
     <div class="error">
@@ -17,7 +17,7 @@
       {{!-- Last name --}}
       <div class="input-group">
         <label for="lastName">Last Name</label>
-        <input type="number" name="lastName" id="lastName" class="input-box" placeholder="eg. Your last name"
+        <input type="text" name="lastName" id="lastName" class="input-box" placeholder="eg. Your last name"
           maxlength="30" value={{lastName}}>
       </div>
       {{!-- Email --}}
@@ -28,14 +28,14 @@
       </div>
       {{!-- Telephone --}}
       <div class="input-group">
-        <label for="telephone">Email</label>
-        <input type="number" name="telephone" id="telephone" class="input-box" placeholder="1" maxlength="30"
+        <label for="telephone">Telephone</label>
+        <input type="text" name="telephone" id="telephone" class="input-box" placeholder="778-778-7788" maxlength="30"
           value={{telephone}}>
       </div>
       {{!-- Address --}}
       <div class="input-group">
         <label for="address">Address</label>
-        <input type="number" name="address" id="address" class="input-box" placeholder="2" maxlength="30"
+        <input type="text" name="address" id="address" class="input-box" placeholder="123 water st" maxlength="30"
           value={{address}}>
       </div>
 

@@ -17,12 +17,46 @@ router.get('/', (req, res) =>
         })
         .catch(err => console.log(err)));
 
-/********************************************* Add a new customer *************************************************/
+/********************************************* Add a new user *************************************************/
+// Display form to add a new user
+router.get('/add-user', (req, res) => res.render('add-user'));
 
+// Add a user
+router.post('/add', (req, res) => {
+    // destructure the data object
+    let { userName, userPassword } = req.body;
+    let errors = [];
 
+    if (!userName) {
+        errors.push({ text: 'Please add a user name' })
+    }
+    if (!userPassword) {
+        errors.push({ text: 'Please add a user password' })
+    }
 
+    // Check for errors
+    if (errors.length > 0) {
+        res.render('add', {
+            errors,
+            userName,
+            userPassword
+        });
+    } else {
+        // Make data lowercase
+        userName = userName.toLowerCase();
+        userPassword = userPassword.toLowerCase();
 
-/********************************************** Search customers **************************************************/
+        // Insert data into the User table
+        User.create({
+            userName,
+            userPassword
+        })
+            .then(user => res.redirect('/user'))
+            .catch(err => console.log(err));
+    }
+});
+
+/********************************************** Search user **************************************************/
 router.get('/search', (req, res) => {
     // Destructure query objects
     let { userIdValue } = req.query;
