@@ -82,7 +82,7 @@ header.inner {
   color: #fff;
   padding: 0.6rem;
   border: 1px solid #ccc;
-  transition: all 0.8s;
+  transition: all 0.7s;
 }
 
 .btn:hover {
@@ -99,10 +99,6 @@ header.inner {
 .btn-reverse:hover {
   background: var(--primary-hover-color);
   border: 1px solid var(--primary-hover-color);
-}
-
-.add-button {
-  transition: all 2s;
 }
 
 /* Home Search */
@@ -123,16 +119,6 @@ header.inner {
   color: #fff;
   margin: 0 0 1.5rem;
   text-align: center;
-  transition: all 1s;
-}
-
-.search-wrap h2 {
-  font-size: 2rem;
-  font-weight: 500;
-  color: #fff;
-  margin: 0 0 1.5rem;
-  text-align: center;
-  transition: all 1s;
 }
 
 .search-form input[type='submit'] {
@@ -141,8 +127,7 @@ header.inner {
   color: #fff;
   padding: 0 2rem;
   cursor: pointer;
-  margin-left: 240px;
-  transition: all 2s;
+  transition: all 0.8s;
 }
 
 .search-form input[type='submit']:hover {
@@ -151,15 +136,12 @@ header.inner {
 }
 
 .search-form {
+  display: flex;
+  width: 600px;
   box-shadow: var(--box-shadow);
-  /* width: auto;
-  height: auto; */
-  min-width: 600px;
-  transition: all 1.5s;
 }
 
 .search-form i {
-  background: #fff;
   color: #333;
 }
 
@@ -167,7 +149,7 @@ header.inner {
 .search-form > * {
   border: 0;
   padding: 0 0 0 10px;
-  /* background: #fff; */
+  background: #fff;
   line-height: 50px;
   font-size: 1rem;
   border-radius: 0;
@@ -179,7 +161,7 @@ input[type='search'] {
 }
 
 /* Gigs */
-.app {
+.gig {
   background: var(--bg-color);
   border-bottom: 4px solid var(--primary-color);
   color: #fff;
@@ -188,17 +170,17 @@ input[type='search'] {
   box-shadow: var(--box-shadow);
 }
 
-.app ul {
+.gig ul {
   list-style: none;
   display: flex;
 }
 
-.app li {
+.gig li {
   margin-right: 0.5rem;
   padding: 0.6rem;
 }
 
-.app .tech span {
+.gig .tech span {
   color: var(--primary-color);
 }
 
@@ -211,7 +193,6 @@ input[type='search'] {
   margin-top: 3rem;
   border-bottom: 4px solid var(--primary-color);
   box-shadow: var(--box-shadow);
-  transition: all 1.5s;
 }
 
 .form-wrap.reg-form,

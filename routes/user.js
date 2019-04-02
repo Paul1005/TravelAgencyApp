@@ -2,27 +2,65 @@ const express = require('express');
 const router = express.Router()
 const db = require('../config/database');
 const User = require('../models/User');
+const Sequelize = require('sequelize');
+const handlebars = require('handlebars');
+const fs = require('fs');
+const Op = Sequelize.Op;
 
-// find all the rows in the flight table 
-router.get('/', (req, res) => 
+/****************************************** Display all rows in the user table ************************************/
+router.get('/', (req, res) =>
     User.findAll()
         .then(user => {
-            /* 
-            console.log(user)
-            res.sendStatus(200); 
-            */
-           res.render('user', {
-               user
-           });
+            res.render('user', {
+                user
+            });
         })
         .catch(err => console.log(err)));
-// find the row(s) in flight table where the startLocation is Vancouver
-// router.get('/', (req, res) => 
-//     Flight.findOne({where: {userName: "Patrick111"}})
-//         .then(flight => {
-//             console.log(user)
-//             res.sendStatus(200);
-//         })
-//         .catch(err => console.log(err)));
+
+/********************************************* Add a new customer *************************************************/
+
+
+
+
+/********************************************** Search customers **************************************************/
+router.get('/search', (req, res) => {
+    // Destructure query objects
+    let { userIdValue } = req.query;
+    let { userNameValue } = req.query;
+    let { userPasswordValue } = req.query;
+
+    // Make lowercase
+    userIdValue = userIdValue.toLowerCase();
+    userNameValue = userNameValue.toLowerCase();
+    userPasswordValue = userPasswordValue.toLowerCase();
+
+    User.findAll({
+        where: {
+            // userId = userIdValue
+            userId: {
+                [Op.or]: {
+                    [Op.eq]: userIdValue,
+                    [Op.between]: [0, 100]
+                }
+            }, // AND
+            // results contains userNameValue OR ''
+            userName: {
+                [Op.or]: {
+                    [Op.like]: '%' + userNameValue + '%',
+                    [Op.eq]: ''
+                }
+            }, // AND
+            // results contains userPasswordValue OR ''
+            userPassword: {
+                [Op.or]: {
+                    [Op.like]: '%' + userPasswordValue + '%',
+                    [Op.eq]: ''
+                }
+            }
+        } // End of Where
+    }) // End of FindAll
+        .then(user => res.render('user', { user }))
+        .catch(err => console.log(err));
+}); // End of router.get('/search', (req, res)
 
 module.exports = router;

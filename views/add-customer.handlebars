@@ -1,0 +1,45 @@
+<section id="add" class="container">
+  <div class="form-wrap">
+    <h1>Add a user</h1>
+    <p>Your contact email will be shared with registered users to apply to your booking</p>
+    {{#each errors}}
+    <div class="error">
+      <p>{{text}}</p>
+    </div>
+    {{/each}}
+    <form action="/customer/add-customer" method="POST">
+      {{!-- First name --}}
+      <div class="input-group">
+        <label for="firstName">First Name</label>
+        <input type="text" name="firstName" id="firstName" class="input-box" placeholder="eg. Your first name"
+          maxlength="30" value={{firstName}}>
+      </div>
+      {{!-- Last name --}}
+      <div class="input-group">
+        <label for="lastName">Last Name</label>
+        <input type="number" name="lastName" id="lastName" class="input-box" placeholder="eg. Your last name"
+          maxlength="30" value={{lastName}}>
+      </div>
+      {{!-- Email --}}
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" class="input-box" placeholder="eg. mytravel@travelagency.com"
+          maxlength="30" value={{email}}>
+      </div>
+      {{!-- Telephone --}}
+      <div class="input-group">
+        <label for="telephone">Email</label>
+        <input type="number" name="telephone" id="telephone" class="input-box" placeholder="1" maxlength="30"
+          value={{telephone}}>
+      </div>
+      {{!-- Address --}}
+      <div class="input-group">
+        <label for="address">Address</label>
+        <input type="number" name="address" id="address" class="input-box" placeholder="2" maxlength="30"
+          value={{address}}>
+      </div>
+
+      <input type="submit" value="Add customer" class="btn btn-reverse">
+    </form>
+  </div>
+</section>
