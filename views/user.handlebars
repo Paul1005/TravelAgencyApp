@@ -37,7 +37,7 @@
     {{!-- Button to add a user --}}
     <div class="d-flex justify-content-end">
       <button class="btn btn-info btn-md add-button">
-        <a href="user/add-user">
+        <a href="/user/add-user">
           Add a user
         </a>
       </button>
@@ -52,7 +52,6 @@
 
   {{#each user}}
   <div class="app">
-    {{foo}}
     <h3>User ID: {{userId}}</h3>
     <ul>
       <li>User Name: {{userName}}</li>
@@ -64,11 +63,11 @@
   {{/each}}
 </section>
 
-<script>
+{{!-- <script>
   function foo(userId) {
     let row = document.getElementsByClassName("app");
     let button = document.createElement("button");
     button.innerText = "Edit";
     row.appendChild(button);
   }
-</script>
+</script> --}}

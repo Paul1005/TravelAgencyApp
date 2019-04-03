@@ -12,6 +12,7 @@
         <input type="search" class="form-control" name="bookingIdValue" id="bookingIdValue" placeholder="e.g. 1">
       </div>
     </div>
+
     {{!-- Booking date --}}
     <div class="form-group row">
       <label for="bookingDateValue" class="col-sm-4 col-form-label">Booking Date</label>
@@ -20,6 +21,7 @@
           placeholder="e.g. Mar-28-2019">
       </div>
     </div>
+
     {{!-- Payment method --}}
     <div class="form-group row">
       <label for="paymentMethodValue" class="col-sm-4 col-form-label">Payment Method</label>
@@ -28,6 +30,7 @@
           placeholder="e.g. credit">
       </div>
     </div>
+
     {{!-- Payment amount --}}
     <div class="form-group row">
       <label for="paymentAmountValue" class="col-sm-4 col-form-label">Payment Amount</label>
@@ -36,6 +39,7 @@
           placeholder="e.g. 3000 (< 3000 CAD)">
       </div>
     </div>
+
     {{!-- Submit button --}}
     <input type="submit" value="Search">
 
@@ -48,7 +52,6 @@
       </button>
     </div>
 
-
   </form>
 
 </section>
@@ -58,6 +61,7 @@
 
   {{#each booking}}
   <div class="app">
+    {{createButton}}
     <h3>booking ID: {{bookingId}}</h3>
     <p>{{bookingDate}}</p>
     <ul>
@@ -75,3 +79,13 @@
   {{/each}}
 
 </section>
+
+<script>
+  const Handlebars = require('handlebars');
+  Handlebars.registerHelper('createButton', function () {
+    let row = document.getElementsByClassName("app");
+    let button = document.createElement("button");
+    button.setAttribute("name", "Edit");
+    row.appendChild(button);
+  });
+</script>

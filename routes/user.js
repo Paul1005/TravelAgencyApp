@@ -3,7 +3,6 @@ const router = express.Router()
 const db = require('../config/database');
 const User = require('../models/User');
 const Sequelize = require('sequelize');
-const handlebars = require('handlebars');
 const fs = require('fs');
 const Op = Sequelize.Op;
 
