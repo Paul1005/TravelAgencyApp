@@ -61,7 +61,6 @@
 
   {{#each booking}}
   <div class="app">
-    {{createButton}}
     <h3>booking ID: {{bookingId}}</h3>
     <p>{{bookingDate}}</p>
     <ul>
@@ -80,7 +79,7 @@
 
 </section>
 
-<script>
+{{!-- <script>
   const Handlebars = require('handlebars');
   Handlebars.registerHelper('createButton', function () {
     let row = document.getElementsByClassName("app");
@@ -88,4 +87,4 @@
     button.setAttribute("name", "Edit");
     row.appendChild(button);
   });
-</script>
+</script> --}}
