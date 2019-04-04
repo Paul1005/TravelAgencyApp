@@ -1,0 +1,27 @@
+<section id="edit" class="container">
+    <div class="form-wrap">
+        <h1>Edit a customer</h1>
+        <p>Your contact email will be shared with registered users to apply to your booking</p>
+
+        {{!-- Display erros here --}}
+        {{#each errors}}
+        <div class="error">
+            <p>{{text}}</p>
+        </div>
+        {{/each}}
+
+        {{!-- Add user form --}}
+        <form action="/user/edit-user" method="POST">
+
+            {{!-- Customer Id --}}
+            <div class="input-group">
+                <label for="existingCustomerId">Customer Id</label>
+                <input type="text" name="existingCustomerId" id="existingCustomerId" class="input-box"
+                    placeholder="Enter the customer Id" maxlength="30" value={{existingUserId}}>
+            </div>
+
+            {{!-- Submit button --}}
+            <input type="submit" value="Edit customer" class="btn btn-reverse">
+        </form>
+    </div>
+</section>

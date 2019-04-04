@@ -85,7 +85,11 @@
     </ul>
     
     {{!-- add onclick function --}}
-    <p><button class="btn" onclick="editCustomer({{customerId}})">Edit</button></p>
+    {{!-- <p><button class="btn" onclick="editCustomer({{customerId}})">Edit</button></p> --}}
+    <p><button class="btn"><a href="/customer/edit-customer">
+      Edit
+    </a></button>
+
   </div>
 
   {{else}}

@@ -142,5 +142,20 @@ router.get('/search', (req, res) => {
         .catch(err => console.log(err));
 }); // End of router.get('/search', (req, res)
 
+//*****Edit Customer*****/
+router.get('/edit-customer', (req, res) => res.render('edit-customer'));
+
+// router.post('/edit-customer', (req, res) => {
+//     let {
+//         bookingIddelete
+//     } = req.body;
+//     Booking.destroy({
+//             where: {
+//                 bookingId: bookingIddelete
+//             }
+//         }).then(booking => res.redirect('/booking'))
+//         .catch(err => console.log(err));
+// });
+
 // Export router
 module.exports = router;
