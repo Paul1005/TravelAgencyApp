@@ -35,7 +35,7 @@ router.post('/add-user', (req, res) => {
 
     // Check for errors
     if (errors.length > 0) {
-        res.render('add', {
+        res.render('add-user', {
             errors,
             userName,
             userPassword

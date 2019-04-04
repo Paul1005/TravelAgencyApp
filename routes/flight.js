@@ -18,7 +18,7 @@ router.get('/', (req, res) =>
 
 
 /********************************************** Test adding a flight **********************************************/
-router.get('/add', (req, res) => {
+router.get('/add-flight', (req, res) => {
     const data = {
         airline: 'Boring JS Airline',
         flightDate: 'Mar-30-2019',

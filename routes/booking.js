@@ -45,7 +45,7 @@ router.post('/add-booking', (req, res) => {
 
     // Check for errors
     if (errors.length > 0) {
-        res.render('add', {
+        res.render('add-booking', {
             errors,
             bookingDate,
             paymentAmount,
@@ -198,7 +198,7 @@ router.post('/edit-booking', (req, res) => {
 
     // Check for errors
     if (errors.length > 0) {
-        res.render('add', {
+        res.render('edit-booking', {
             errors,
             existingBookingId,
             newBookingDate,

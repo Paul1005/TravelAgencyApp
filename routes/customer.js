@@ -43,7 +43,7 @@ router.post('/add-customer', (req, res) => {
 
     // Check for errors
     if (errors.length > 0) {
-        res.render('add', {
+        res.render('add-customer', {
             errors,
             firstName,
             lastName,
@@ -174,7 +174,7 @@ router.post('/edit-customer', (req, res) => {
 
     // Check for errors
     if (errors.length > 0) {
-        res.render('add', {
+        res.render('edit-customer', {
             errors,
             existingCustomerId,
             newFirstName,
