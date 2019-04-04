@@ -139,6 +139,7 @@ router.post('/edit-user', (req, res) => {
             userPassword: newUserPassword
         },
             {
+                // Where clause
                 where: {
                     userId: existingUserId
                 }
@@ -146,9 +147,8 @@ router.post('/edit-user', (req, res) => {
         )
             .then(user => res.redirect('/user'))
             .catch(err => console.log(err));
-    }
+    } // End of else
 });
-
 
 
 module.exports = router;
