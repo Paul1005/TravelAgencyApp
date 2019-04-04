@@ -1,0 +1,110 @@
+<section id="search" class="search-wrap">
+  <h1>Find a customer</h1>
+  {{!-- Search form for the customer table --}}
+  <form action="/customer/search" class="search-form bg-white">
+    <i class="fas fa-search"></i>
+
+    {{!-- Customer Id --}}
+    <div class="form-group row">
+      <label for="customerIdValue" class="col-sm-4 col-form-label">Customer Id</label>
+      <div class="col-sm-8">
+        <input type="search" class="form-control" name="customerIdValue" id="customerIdValue" placeholder="e.g. 10">
+      </div>
+    </div>
+
+    {{!-- First name --}}
+    <div class="form-group row">
+      <label for="firstNameValue" class="col-sm-4 col-form-label">First Name</label>
+      <div class="col-sm-8">
+        <input type="search" class="form-control" name="firstNameValue" id="firstNameValue" placeholder="e.g. Intelli">
+      </div>
+    </div>
+
+    {{!-- Last name --}}
+    <div class="form-group row">
+      <label for="lastNameValue" class="col-sm-4 col-form-label">Last Name</label>
+      <div class="col-sm-8">
+        <input type="search" class="form-control" name="lastNameValue" id="lastNameValue" placeholder="e.g. J">
+      </div>
+    </div>
+
+    {{!-- Email --}}
+    <div class="form-group row">
+      <label for="emailValue" class="col-sm-4 col-form-label">Email</label>
+      <div class="col-sm-8">
+        <input type="email" class="form-control" name="emailValue" id="emailValue"
+          placeholder="e.g. travel-agent@travelAgency.com">
+      </div>
+    </div>
+
+    {{!-- Telephone --}}
+    <div class="form-group row">
+      <label for="telephoneValue" class="col-sm-4 col-form-label">Telephone</label>
+      <div class="col-sm-8">
+        <input type="search" class="form-control" name="telephoneValue" id="telephoneValue"
+          placeholder="e.g. 778-123-4567">
+      </div>
+    </div>
+
+    {{!-- Address --}}
+    <div class="form-group row">
+      <label for="addressValue" class="col-sm-4 col-form-label">Address</label>
+      <div class="col-sm-8">
+        <input type="search" class="form-control" name="addressValue" id="addressValue" placeholder="e.g. 123 Bay St">
+      </div>
+    </div>
+
+    {{!-- Submit button --}}
+    <input type="submit" value="Search">
+
+    {{!-- Button to add a customer --}}
+    <div class="d-flex justify-content-between">
+      {{!-- Add a customer --}}
+      <button class="btn btn-info btn-md add-button">
+        <a href="customer/add-customer">
+          Add a customer
+        </a>
+      </button>
+      {{!-- Edit a customer --}}
+      <button class="btn btn-info btn-md add-button">
+        <a href="customer/edit-customer">
+          Edit a customer
+        </a>
+      </button>
+      {{!-- Delete a customer --}}
+      <button class="btn btn-info btn-md add-button">
+        <a href="customer/delete-customer">
+          Delete a customer
+        </a>
+      </button>
+    </div>
+
+  </form>
+</section>
+
+<section id="customer" class="container">
+  <h1>All Customers</h1>
+
+  {{#each customer}}
+  <div class="app">
+    <h3>Customer ID: {{customerId}}</h3>
+    <p>Customer Name: {{firstName}} {{lastName}}</p>
+    <ul>
+      <li>First Name: {{firstName}}</li>
+      <li>Last Name: {{lastName}}</li>
+      <li>Email: {{email}}</li>
+      <li>Telephone: {{telephone}}</li>
+      <li>Address: {{address}}</li>
+    </ul>
+
+    {{!-- add onclick function --}}
+    {{!-- <p><button class="btn" onclick="editCustomer({{customerId}})">Edit</button></p> --}}
+  </div>
+
+  {{else}}
+  <p>Customer Not Found</p>
+
+  {{/each}}
+
+
+</section>

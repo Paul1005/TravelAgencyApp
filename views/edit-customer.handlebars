@@ -1,0 +1,63 @@
+<section id="edit" class="container">
+  <div class="form-wrap">
+    <h1>Edit a customer</h1>
+    <p>Your contact email will be shared with registered users to apply to your booking</p>
+
+    {{!-- Display erros here --}}
+    {{#each errors}}
+    <div class="error">
+      <p>{{text}}</p>
+    </div>
+    {{/each}}
+
+    {{!-- Add user form --}}
+    <form action="/customer/edit-customer" method="POST">
+
+      {{!-- Customer Id --}}
+      <div class="input-group">
+        <label for="existingCustomerId">Customer Id</label>
+        <input type="text" name="existingCustomerId" id="existingCustomerId" class="input-box"
+          placeholder="Enter an existing customer Id" maxlength="30" value={{existingCustomerId}}>
+      </div>
+
+      {{!-- First Name --}}
+      <div class="input-group">
+        <label for="newFristName">New First Name</label>
+        <input type="text" name="newFristName" id="newFristName" class="input-box" placeholder="Enter a new first name"
+          maxlength="30" value={{newFristName}}>
+      </div>
+
+      {{!-- Last Name --}}
+      <div class="input-group">
+        <label for="newLastName">New Last Name</label>
+        <input type="text" name="newLastName" id="newLastName" class="input-box" placeholder="Enter a new last name"
+          minlength="9" maxlength="12" required autocomplete="off" value={{newLastName}}>
+      </div>
+
+      {{!-- Email --}}
+      <div class="input-group">
+        <label for="newTelephone">New Email</label>
+        <input type="text" name="newTelephone" id="newTelephone" class="input-box" placeholder="Enter a new email"
+          minlength="9" maxlength="12" required autocomplete="off" value={{newTelephone}}>
+      </div>
+
+      {{!-- Telephone --}}
+      <div class="input-group">
+        <label for="newTelephone">New Telephone</label>
+        <input type="text" name="newTelephone" id="newTelephone" class="input-box" placeholder="Enter a new telephone"
+          minlength="9" maxlength="12" required autocomplete="off" value={{newTelephone}}>
+      </div>
+
+      {{!-- Address --}}
+      <div class="input-group">
+        <label for="newAddress">New Address</label>
+        <input type="text" name="newAddress" id="newAddress" class="input-box" placeholder="Enter a new address"
+          minlength="9" maxlength="12" required autocomplete="off" value={{newAddress}}>
+      </div>
+
+
+      {{!-- Submit button --}}
+      <input type="submit" value="Edit booking" class="btn btn-reverse">
+    </form>
+  </div>
+</section>

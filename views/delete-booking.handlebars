@@ -1,0 +1,17 @@
+<section id="delete" class="container">
+  <div class="form-wrap">
+    <h1>delete a booking</h1>
+    {{#each errors}}
+    <div class="error">
+      <p>{{text}}</p>
+    </div>
+    {{/each}}
+    <form action="/booking/delete-booking" method="POST">
+      {{!-- booking date --}}
+      <div class="input-group">
+        <label for="bookingIddelete">Booking Id</label>
+        <input type="text" name="bookingIddelete" id="bookingIddelete" class="input-box" placeholder="eg. 1"
+          maxlength="30" value={{bookingId}}>
+      </div>
+      <input type="submit" value="delete">
+</section>

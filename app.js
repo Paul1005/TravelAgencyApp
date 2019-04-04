@@ -1,7 +1,48 @@
-const express = require('express')
-const app = express()
-const port = 3000
+// Use express dependency
+const express = require('express');
+// Use express-handlebars dependency
+const exphbs = require('express-handlebars');
+// Use body-parser dependency
+const bodyParser = require('body-parser');
+// Use path dependency
+const path = require('path');
 
-app.get('/', (req, res) => res.send('Hello World!'))
+// Use express
+const app = express();
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+// Use handlebars
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
+
+// Use body-parser
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// Set PORT
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, console.log(`Server started on port ${PORT}`));
+
+// Set static folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Use Database
+const db = require('./config/database');
+
+// Test database
+db
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
+
+// Index route
+app.get('/', (req, res) => res.render('index', { layout: 'landing' }));
+
+// Ohter routes
+app.use('/flight', require('./routes/flight'));
+app.use('/user', require('./routes/user'));
+app.use('/customer', require('./routes/customer'));
+app.use('/booking', require('./routes/booking'));
+

@@ -1,0 +1,50 @@
+<section id="edit" class="container">
+  <div class="form-wrap">
+    <h1>Edit a user</h1>
+    <p>Your contact email will be shared with registered users to apply to your booking</p>
+
+    {{!-- Display erros here --}}
+    {{#each errors}}
+    <div class="error">
+      <p>{{text}}</p>
+    </div>
+    {{/each}}
+
+    {{!-- Add user form --}}
+    <form action="/booking/edit-booking" method="POST">
+
+      {{!-- Booking Id --}}
+      <div class="input-group">
+        <label for="existingBookingId">Booking Id</label>
+        <input type="text" name="existingBookingId" id="existingBookingId" class="input-box"
+          placeholder="Enter the booking Id" maxlength="30" value={{existingBookingId}}>
+      </div>
+
+      {{!-- Booking Date --}}
+      <div class="input-group">
+        <label for="newBookingDate">New Booking Date</label>
+        <input type="text" name="newBookingDate" id="newBookingDate" class="input-box"
+          placeholder="Enter a new booking date" maxlength="30" value={{newBookingDate}}>
+      </div>
+
+      {{!-- Payment Method --}}
+      <div class="input-group">
+        <label for="newPaymentMethod">New Payment Method</label>
+        <input type="text" name="newPaymentMethod" id="newPaymentMethod" class="input-box"
+          placeholder="Enter a new payment method" minlength="9" maxlength="12" required autocomplete="off"
+          value={{newPaymentMethod}}>
+      </div>
+
+      {{!-- Payment Amount --}}
+      <div class="input-group">
+        <label for="newPaymentAmount">New Payment Amount</label>
+        <input type="text" name="newPaymentAmount" id="newPaymentAmount" class="input-box"
+          placeholder="Enter a new payment amount" minlength="9" maxlength="12" required autocomplete="off"
+          value={{newPaymentAmount}}>
+      </div>
+
+      {{!-- Submit button --}}
+      <input type="submit" value="Edit booking" class="btn btn-reverse">
+    </form>
+  </div>
+</section>

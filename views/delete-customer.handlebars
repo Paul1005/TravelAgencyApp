@@ -1,0 +1,17 @@
+<section id="delete" class="container">
+  <div class="form-wrap">
+    <h1>delete a customer</h1>
+    {{#each errors}}
+    <div class="error">
+      <p>{{text}}</p>
+    </div>
+    {{/each}}
+    <form action="/booking/delete-customer" method="POST">
+      {{!-- booking date --}}
+      <div class="input-group">
+        <label for="customerIdDelete">Customer Id</label>
+        <input type="text" name="customerIdDelete" id="customerIdDelete" class="input-box" placeholder="eg. Mar-25-2019"
+          maxlength="30" value={{bookingId}}>
+      </div>
+      <input type="submit" value="delete">
+</section>

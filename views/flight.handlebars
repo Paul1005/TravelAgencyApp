@@ -1,0 +1,96 @@
+<section id="search" class="search-wrap">
+  <h1>Find a flight</h1>
+  {{!-- Search form for the flight table --}}
+  <form action="/flight/search" class="search-form bg-white">
+    <i class="fas fa-search"></i>
+
+    {{!-- Flight Id --}}
+    <div class="form-group row">
+      <label for="flightIdValue" class="col-sm-4 col-form-label">Flight Id</label>
+      <div class="col-sm-6">
+        <input type="search" class="form-control" name="flightIdValue" id="flightIdValue" placeholder="e.g. 6">
+      </div>
+    </div>
+
+    {{!-- Airline --}}
+    <div class="form-group row">
+      <label for="airlineValue" class="col-sm-4 col-form-label">Airline</label>
+      <div class="col-sm-6">
+        <input type="search" class="form-control" name="airlineValue" id="airlineValue" placeholder="e.g. Air Canada">
+      </div>
+    </div>
+
+    {{!-- Flight Date --}}
+    <div class="form-group row">
+      <label for="flightDateValue" class="col-sm-4 col-form-label">Flight Date</label>
+      <div class="col-sm-6">
+        <input type="search" class="form-control" name="flightDateValue" id="flightDateValue"
+          placeholder="e.g. May-30-2019">
+      </div>
+    </div>
+
+    {{!-- Start Location --}}
+    <div class="form-group row">
+      <label for="startLocationValue" class="col-sm-4 col-form-label">Start Location</label>
+      <div class="col-sm-6">
+        <input type="search" class="form-control" name="startLocationValue" id="startLocationValue"
+          placeholder="e.g. Vancouver">
+      </div>
+    </div>
+
+    {{!-- End Location --}}
+    <div class="form-group row">
+      <label for="endLocationValue" class="col-sm-4 col-form-label">End Location</label>
+      <div class="col-sm-6">
+        <input type="search" class="form-control" name="endLocationValue" id="endLocationValue"
+          placeholder="e.g. Los Angeles">
+      </div>
+    </div>
+
+    {{!-- Scheduled Leaving Time --}}
+    <div class="form-group row">
+      <label for="scheduledLeavingTimeValue" class="col-sm-4 col-form-label">Scheduled Leaving Time</label>
+      <div class="col-sm-6">
+        <input type="search" class="form-control" name="scheduledLeavingTimeValue" id="scheduledLeavingTimeValue"
+          placeholder="e.g. 10:25">
+      </div>
+    </div>
+
+    {{!-- Scheduled Arrival Time --}}
+    <div class="form-group row">
+      <label for="estimatedArrivalTimeValue" class="col-md-4 col-form-label">Estimated Arrival Time</label>
+      <div class="col-sm-6">
+        <input type="search" class="form-control" name="estimatedArrivalTimeValue" id="estimatedArrivalTimeValue"
+          placeholder="e.g. 23:00">
+      </div>
+    </div>
+
+    {{!-- Submit button --}}
+    <input type="submit" value="Search">
+
+  </form>
+</section>
+
+<section id="flight" class="container">
+  <h1>All flights</h1>
+
+  {{#each flight}}
+  <div class="app">
+    <h3>Fight ID: {{flightId}}</h3>
+    <p>Airline: {{airline}}</p>
+    <p>Flight Date: {{flightDate}}</p>
+    <ul>
+      <li>Start Location: {{startLocation}}</li>
+      <li>End Location: {{endLocation}}</li>
+      <li>Scheduled Leaving Time: {{scheduledLeavingTime}}</li>
+      <li>Estimated Arrival Time: {{estimatedArrivalTime}}</li>
+    </ul>
+  </div>
+
+  {{else}}
+  <p>No flight available</p>
+
+  {{/each}}
+
+
+</section>
