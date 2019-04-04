@@ -172,6 +172,16 @@ router.get('/search', (req, res) => {
 
 }); // End of router.get('/search', (req, res)
 
+//*****DELETE BOOKING*****/
+router.get('/delete-booking', (req, res) => res.render('delete-booking'));
+
+router.post('/delete-booking', (req, res) => {
+    let {bookingIddelete} = req.body;
+    Booking.destroy({
+        where: {bookingId :bookingIddelete }
+    }).then(booking => res.redirect('/booking'))
+    .catch(err => console.log(err));
+});
 
 
 // Export router
