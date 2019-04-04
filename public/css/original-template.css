@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
 :root {
-  --primary-color: #568c9b;
-  --primary-hover-color: #64a5b7;
+  --primary-color: #17A2B6;
+  --primary-hover-color: #17A2B6;
   --bg-color: #333;
   --box-shadow: 3px 4px 12px rgba(0, 0, 0, 0.7);
 }
@@ -126,6 +126,7 @@ header.inner {
   border: 1px solid var(--primary-color);
   color: #fff;
   padding: 0 2rem;
+  border-radius: 0.25rem;
   cursor: pointer;
   transition: all 0.8s;
 }
