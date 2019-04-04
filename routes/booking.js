@@ -241,6 +241,15 @@ router.post('/delete-booking', (req, res) => {
         .catch(err => console.log(err));
 });
 
+/* const Handlebars = require('handlebars');
+Handlebars.registerHelper('deletebooking', function (id) {
+    Booking.destroy({
+        where: {bookingId :id }
+    }).then(booking => res.redirect('/booking'))
+    .catch(err => console.log(err));
+});*/
+
+
 
 // Export router
 module.exports = router;

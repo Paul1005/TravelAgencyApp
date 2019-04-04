@@ -142,6 +142,7 @@ router.get('/search', (req, res) => {
         .catch(err => console.log(err));
 }); // End of router.get('/search', (req, res)
 
+<<<<<<< HEAD
 /************************************************* Edit booking *************************************************/
 // Display form to edit a user
 router.get('/edit-customer', (req, res) => res.render('edit-customer'));
@@ -224,6 +225,22 @@ router.post('/delete-customer', (req, res) => {
         .catch(err => console.log(err));
 });
 
+=======
+//*****Edit Customer*****/
+router.get('/edit-customer', (req, res) => res.render('edit-customer'));
+
+// router.post('/edit-customer', (req, res) => {
+//     let {
+//         bookingIddelete
+//     } = req.body;
+//     Booking.destroy({
+//             where: {
+//                 bookingId: bookingIddelete
+//             }
+//         }).then(booking => res.redirect('/booking'))
+//         .catch(err => console.log(err));
+// });
+>>>>>>> 7ac381cac98494b7aa68df321ff764e0d2d31d96
 
 // Export router
 module.exports = router;
