@@ -44,18 +44,27 @@
     <input type="submit" value="Search">
 
     {{!-- Button to add a booking --}}
-    <div class="d-flex justify-content-end">
+    <div class="d-flex justify-content-between">
+      {{!-- Add a booking --}}
       <button class="btn btn-info btn-md add-button">
         <a href="booking/add-booking">
           Add a booking
         </a>
       </button>
+      {{!-- Edit a booking --}}
+      <button class="btn btn-info btn-md add-button">
+        <a href="booking/edit-booking">
+          Edit a booking
+        </a>
+      </button>
+      {{!-- Delete a booking --}}
       <button class="btn btn-info btn-md add-button">
         <a href="booking/delete-booking">
           delete a booking
         </a>
       </button>
     </div>
+
 
   </form>
 
@@ -89,7 +98,6 @@
   Handlebars.registerHelper('createButton', function () {
     let row = document.getElementsByClassName("app");
     let button = document.createElement("button");
-    button.setAttribute("name", "Edit");
     row.appendChild(button);
   });
 </script> --}}

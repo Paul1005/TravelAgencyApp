@@ -142,5 +142,88 @@ router.get('/search', (req, res) => {
         .catch(err => console.log(err));
 }); // End of router.get('/search', (req, res)
 
+/************************************************* Edit booking *************************************************/
+// Display form to edit a user
+router.get('/edit-customer', (req, res) => res.render('edit-customer'));
+
+// Edit a user
+router.post('/edit-customer', (req, res) => {
+    // destructure the data object
+    let { existingCustomerId, newFirstName, newLastName, newEmail, newTelephone, newAddress } = req.body;
+    let errors = [];
+
+    // Error handling
+    if (!existingCustomerId) {
+        errors.push({ text: 'Please add an existing customer id' })
+    }
+    if (!newFirstName) {
+        errors.push({ text: 'Please add a new first name' })
+    }
+    if (!newLastName) {
+        errors.push({ text: 'Please add a new last name' })
+    }
+    if (!newEmail) {
+        errors.push({ text: 'Please add a new email' })
+    }
+    if (!newTelephone) {
+        errors.push({ text: 'Please add a new telephone number' })
+    }
+    if (!newAddress) {
+        errors.push({ text: 'Please add a new address' })
+    }
+
+    // Check for errors
+    if (errors.length > 0) {
+        res.render('add', {
+            errors,
+            existingCustomerId,
+            newFirstName,
+            newLastName,
+            newEmail,
+            newTelephone,
+            newAddress
+        });
+    } else {
+        // Make data lowercase
+        existingCustomerId = existingCustomerId.toLowerCase();
+        newFirstName = newFirstName.toLowerCase();
+        newLastName = newLastName.toLowerCase();
+        newEmail = newEmail.toLowerCase();
+        newTelephone = newTelephone.toLowerCase();
+        newAddress = newAddress.toLowerCase();
+
+        // Find the row in the User table
+        Customer.update({
+            firstName: newFirstName,
+            lastName: newLastName,
+            email: newEmail,
+            telephone: newTelephone,
+            address: newAddress
+        },
+            {
+                // Where clause
+                where: {
+                    customerId: existingCustomerId
+                }
+            }
+        )
+            .then(customer => res.redirect('/customer'))
+            .catch(err => console.log(err));
+    } // End of else
+});
+
+
+/************************************************* Delete booking *************************************************/
+router.get('/delete-customer', (req, res) => res.render('delete-customer'));
+
+router.post('/delete-customer', (req, res) => {
+    let { customerIdDelete } = req.body;
+    Customer.destroy({
+        where: { customerId: customerIdDelete }
+    }).then(customer => res.redirect('/customer'))
+        .catch(err => console.log(err));
+});
+
+
 // Export router
 module.exports = router;

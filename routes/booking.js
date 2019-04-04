@@ -172,15 +172,73 @@ router.get('/search', (req, res) => {
 
 }); // End of router.get('/search', (req, res)
 
-//*****DELETE BOOKING*****/
+/************************************************* Edit booking *************************************************/
+// Display form to edit a user
+router.get('/edit-booking', (req, res) => res.render('edit-booking'));
+
+// Edit a user
+router.post('/edit-booking', (req, res) => {
+    // destructure the data object
+    let { existingBookingId, newBookingDate, newPaymentMethod, newPaymentAmount } = req.body;
+    let errors = [];
+
+    // Error handling
+    if (!existingBookingId) {
+        errors.push({ text: 'Please add a new booking id' })
+    }
+    if (!newBookingDate) {
+        errors.push({ text: 'Please add a new booking date' })
+    }
+    if (!newPaymentMethod) {
+        errors.push({ text: 'Please add a new payment method' })
+    }
+    if (!newPaymentAmount) {
+        errors.push({ text: 'Please add a new payment amount' })
+    }
+
+    // Check for errors
+    if (errors.length > 0) {
+        res.render('add', {
+            errors,
+            existingBookingId,
+            newBookingDate,
+            newPaymentMethod,
+            newPaymentAmount
+        });
+    } else {
+        // Make data lowercase
+        existingBookingId = existingBookingId.toLowerCase();
+        newBookingDate = newBookingDate.toLowerCase();
+        newPaymentMethod = newPaymentMethod.toLowerCase();
+        newPaymentAmount = newPaymentAmount.toLowerCase();
+
+        // Find the row in the User table
+        User.update({
+            bookingDate: newBookingDate,
+            paymentMethod: newPaymentMethod,
+            paymentAmount: newPaymentAmount
+        },
+            {
+                // Where clause
+                where: {
+                    bookingId: existingBookingId
+                }
+            }
+        )
+            .then(booking => res.redirect('/booking'))
+            .catch(err => console.log(err));
+    } // End of else
+});
+
+/************************************************* Delete booking *************************************************/
 router.get('/delete-booking', (req, res) => res.render('delete-booking'));
 
 router.post('/delete-booking', (req, res) => {
-    let {bookingIddelete} = req.body;
+    let { bookingIddelete } = req.body;
     Booking.destroy({
-        where: {bookingId :bookingIddelete }
+        where: { bookingId: bookingIddelete }
     }).then(booking => res.redirect('/booking'))
-    .catch(err => console.log(err));
+        .catch(err => console.log(err));
 });
 
 
