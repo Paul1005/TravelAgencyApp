@@ -3,7 +3,6 @@ const router = express.Router()
 const db = require('../config/database');
 const User = require('../models/User');
 const Sequelize = require('sequelize');
-const handlebars = require('handlebars');
 const fs = require('fs');
 const Op = Sequelize.Op;
 
@@ -22,7 +21,7 @@ router.get('/', (req, res) =>
 router.get('/add-user', (req, res) => res.render('add-user'));
 
 // Add a user
-router.post('/add', (req, res) => {
+router.post('/add-user', (req, res) => {
     // destructure the data object
     let { userName, userPassword } = req.body;
     let errors = [];
@@ -96,5 +95,60 @@ router.get('/search', (req, res) => {
         .then(user => res.render('user', { user }))
         .catch(err => console.log(err));
 }); // End of router.get('/search', (req, res)
+
+
+
+/********************************************* Edit a user *************************************************/
+// Display form to edit a user
+router.get('/edit-user', (req, res) => res.render('edit-user'));
+
+// Edit a user
+router.post('/edit-user', (req, res) => {
+    // destructure the data object
+    let { existingUserId, newUserName, newUserPassword } = req.body;
+    let errors = [];
+
+    // Error handling
+    if (!existingUserId) {
+        errors.push({ text: 'Please add a new user name' })
+    }
+    if (!newUserName) {
+        errors.push({ text: 'Please add a new user name' })
+    }
+    if (!newUserPassword) {
+        errors.push({ text: 'Please add a new user password' })
+    }
+
+    // Check for errors
+    if (errors.length > 0) {
+        res.render('add', {
+            errors,
+            existingUserId,
+            userName,
+            userPassword
+        });
+    } else {
+        // Make data lowercase
+        existingUserId = existingUserId.toLowerCase();
+        newUserName = newUserName.toLowerCase();
+        newUserPassword = newUserPassword.toLowerCase();
+
+        // Find the row in the User table
+        User.update({
+            userName: newUserName,
+            userPassword: newUserPassword
+        },
+            {
+                // Where clause
+                where: {
+                    userId: existingUserId
+                }
+            }
+        )
+            .then(user => res.redirect('/user'))
+            .catch(err => console.log(err));
+    } // End of else
+});
+
 
 module.exports = router;

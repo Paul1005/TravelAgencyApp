@@ -19,7 +19,7 @@ router.get('/', (req, res) =>
 router.get('/add-booking', (req, res) => res.render('add-booking'));
 
 // Add a booking
-router.post('/add', (req, res) => {
+router.post('/add-booking', (req, res) => {
     // destructure the data object
     let { bookingDate, paymentAmount, paymentMethod, flightId, customerId, userId } = req.body;
     let errors = [];
