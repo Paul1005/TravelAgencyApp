@@ -220,7 +220,8 @@ router.post('/delete-customer', (req, res) => {
     let { customerIdDelete } = req.body;
     Customer.destroy({
         where: { customerId: customerIdDelete }
-    }).then(customer => res.redirect('/customer'))
+    })
+        .then(customer => res.redirect('/customer'))
         .catch(err => console.log(err));
 });
 

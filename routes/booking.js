@@ -61,9 +61,6 @@ router.post('/add-booking', (req, res) => {
             paymentAmount = `${paymentAmount}`;
         }
 
-        // Make paymentMethod lowercase and remove space after comma
-        paymentMethod = paymentMethod.toLowerCase().replace(/, /g, ',');
-
         // Insert data into the flight table
         Booking.create({
             bookingDate,

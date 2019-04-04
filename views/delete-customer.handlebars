@@ -6,12 +6,12 @@
       <p>{{text}}</p>
     </div>
     {{/each}}
-    <form action="/booking/delete-customer" method="POST">
+    <form action="/customer/delete-customer" method="POST">
       {{!-- booking date --}}
       <div class="input-group">
         <label for="customerIdDelete">Customer Id</label>
-        <input type="text" name="customerIdDelete" id="customerIdDelete" class="input-box" placeholder="eg. Mar-25-2019"
+        <input type="text" name="customerIdDelete" id="customerIdDelete" class="input-box" placeholder="e.g. 10"
           maxlength="30" value={{bookingId}}>
       </div>
-      <input type="submit" value="delete">
+      <input type="submit" value="Delete customer" class="btn btn-reverse">
 </section>
