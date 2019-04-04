@@ -57,8 +57,13 @@
       <li>User Name: {{userName}}</li>
       <li>User Password: {{userPassword}}</li>
     </ul>
-    <button>
-      <a href="/user/add-user">Edit</a>
+
+    {{!-- Edit user --}}
+    <button class="btn btn-info btn-sm edit-button">
+      <a href="/user/edit-user">Edit</a>
+    </button>
+    <button id="user-delete" class="btn btn-danger btn-sm delete-button">
+      Delete
     </button>
   </div>
   {{else}} <p>User Not Found</p>

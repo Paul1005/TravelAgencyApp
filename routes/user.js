@@ -96,4 +96,59 @@ router.get('/search', (req, res) => {
         .catch(err => console.log(err));
 }); // End of router.get('/search', (req, res)
 
+
+
+/********************************************* Edit a user *************************************************/
+// Display form to edit a user
+router.get('/edit-user', (req, res) => res.render('edit-user'));
+
+// Edit a user
+router.post('/edit-user', (req, res) => {
+    // destructure the data object
+    let { existingUserId, newUserName, newUserPassword } = req.body;
+    let errors = [];
+
+    // Error handling
+    if (!existingUserId) {
+        errors.push({ text: 'Please add a new user name' })
+    }
+    if (!newUserName) {
+        errors.push({ text: 'Please add a new user name' })
+    }
+    if (!newUserPassword) {
+        errors.push({ text: 'Please add a new user password' })
+    }
+
+    // Check for errors
+    if (errors.length > 0) {
+        res.render('add', {
+            errors,
+            existingUserId,
+            userName,
+            userPassword
+        });
+    } else {
+        // Make data lowercase
+        existingUserId = existingUserId.toLowerCase();
+        newUserName = newUserName.toLowerCase();
+        newUserPassword = newUserPassword.toLowerCase();
+
+        // Find the row in the User table
+        User.update({
+            userName: newUserName,
+            userPassword: newUserPassword
+        },
+            {
+                where: {
+                    userId: existingUserId
+                }
+            }
+        )
+            .then(user => res.redirect('/user'))
+            .catch(err => console.log(err));
+    }
+});
+
+
+
 module.exports = router;
