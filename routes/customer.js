@@ -20,7 +20,7 @@ router.get('/', (req, res) =>
 router.get('/add-customer', (req, res) => res.render('add-customer'));
 
 // Add a customer
-router.post('/add', (req, res) => {
+router.post('/add-customer', (req, res) => {
     // destructure the data object
     let { firstName, lastName, email, telephone, address } = req.body;
     let errors = [];

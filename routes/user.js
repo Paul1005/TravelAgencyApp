@@ -21,7 +21,7 @@ router.get('/', (req, res) =>
 router.get('/add-user', (req, res) => res.render('add-user'));
 
 // Add a user
-router.post('/add', (req, res) => {
+router.post('/add-user', (req, res) => {
     // destructure the data object
     let { userName, userPassword } = req.body;
     let errors = [];
