@@ -83,6 +83,9 @@
       <li>Telephone: {{telephone}}</li>
       <li>Address: {{address}}</li>
     </ul>
+    
+    {{!-- add onclick function --}}
+    <p><button class="btn" onclick="editCustomer({{customerId}})">Edit</button></p>
   </div>
 
   {{else}}
@@ -92,3 +95,4 @@
 
 
 </section>
+
