@@ -1,45 +1,51 @@
+// Use sequelize dependency
 const Sequelize = require('sequelize');
+// Use database
 const db = require('../config/database');
+// Use Customer Model
 const Customer = require('./Customer');
+// Use Flight Model
 const Flight = require('./Flight');
+// Use User Model
 const User = require('./User');
 
+// Define the Booking Model 
 const Booking = db.define('booking', {
-    /* attributes */
-    bookingId: {
+    /* 7 attributes (including 3 Fks */
+    bookingId: { // Integer, NOT NULL
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    bookingDate: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    paymentAmount: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    paymentMethod: {
+    bookingDate: { // String, NOT NULL
         type: Sequelize.STRING,
         allowNull: false
     },
-    userId: {
+    paymentAmount: { // Integer, NOT NULL
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    customerId: {
+    paymentMethod: { // String, NOT NULL
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    userId: { // Integer, NOT NULL
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    flightId: {
+    customerId: { // Integer, NOT NULL
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    flightId: { // Integer, NOT NULL
         type: Sequelize.INTEGER,
         allowNull: false
     }
 }, {
-        // don't add the timestamp attributes (updatedAt, createdAt)
+        // Don't add the timestamp attributes (updatedAt, createdAt)
         timestamps: false,
 
-        // don't delete database entries but set the newly added attribute deletedAt
+        // Don't delete database entries but set the newly added attribute deletedAt
         // to the current date (when deletion was done). paranoid will only work if
         // timestamps are enabled
         paranoid: true,
@@ -48,16 +54,19 @@ const Booking = db.define('booking', {
         // Does not override attribute with field option already defined
         underscored: true,
 
-        // disable the modification of table names; By default, sequelize will automatically
+        // Disable the modification of table names; By default, sequelize will automatically
         // transform all passed model names (first parameter of define) into plural.
         // if you don't want that, set the following
         freezeTableName: true,
 
-        // define the table's name
+        // Define the table's name
         tableName: 'booking',
     });
 
-/* Foreign keys */
+/* 
+Foreign keys, set up many to many relationships with
+Customer, User, and Flight tables 
+*/
 Booking.hasMany(Customer, {
     foreignKey: {
         name: 'customerId',
@@ -77,4 +86,5 @@ Booking.hasMany(Flight, {
     }
 })
 
+// Export the Booking Model
 module.exports = Booking;

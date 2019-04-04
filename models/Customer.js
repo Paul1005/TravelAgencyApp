@@ -1,38 +1,41 @@
+// Use squelize dependency
 const Sequelize = require('sequelize');
+// Use database 
 const db = require('../config/database');
 
+// Define the Customer Model
 const Customer = db.define('customer', {
-    /* attributes */
-    customerId: {
+    // 6 attributes
+    customerId: { // Integer, AUTO_INCREMENT, PRIMARY KEY
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    firstName: {
+    firstName: { // String, NOT NULL
         type: Sequelize.STRING,
         allowNull: false
     },
-    lastName: {
+    lastName: { // String, NOT NULL
         type: Sequelize.STRING,
         allowNull: false
     },
-    email: {
+    email: { // String, NOT NULL
         type: Sequelize.STRING,
         allowNull: false
     },
-    telephone: {
+    telephone: { // String, NOT NULL
         type: Sequelize.STRING,
         allowNull: false
     },
-    address: {
+    address: { // String, NOT NULL
         type: Sequelize.STRING,
         allowNull: false
     }
 }, {
-        // don't add the timestamp attributes (updatedAt, createdAt)
+        // Don't add the timestamp attributes (updatedAt, createdAt)
         timestamps: false,
 
-        // don't delete database entries but set the newly added attribute deletedAt
+        // Don't delete database entries but set the newly added attribute deletedAt
         // to the current date (when deletion was done). paranoid will only work if
         // timestamps are enabled
         paranoid: true,
@@ -41,14 +44,15 @@ const Customer = db.define('customer', {
         // Does not override attribute with field option already defined
         underscored: true,
 
-        // disable the modification of table names; By default, sequelize will automatically
+        // Disable the modification of table names; By default, sequelize will automatically
         // transform all passed model names (first parameter of define) into plural.
         // if you don't want that, set the following
         freezeTableName: true,
 
-        // define the table's name
+        // Define the table's name
         tableName: 'customer',
 
     });
 
+// Export the Customer Model
 module.exports = Customer;

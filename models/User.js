@@ -1,26 +1,29 @@
+// Use squelize dependency
 const Sequelize = require('sequelize');
+// Use database 
 const db = require('../config/database');
 
+// Define the User Model
 const User = db.define('user', {
-    /* attributes */
-    userId: {
+    /* 3 attributes */
+    userId: { // Integer, AUTO_INCREMENT, PRIMARY KEY
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    userName: {
+    userName: { // String, NOT NULL
         type: Sequelize.STRING,
         allowNull: false
     },
-    userPassword: {
+    userPassword: { // String, NOT NULL
         type: Sequelize.STRING,
         allowNull: false
     },
 }, {
-        // don't add the timestamp attributes (updatedAt, createdAt)
+        // Don't add the timestamp attributes (updatedAt, createdAt)
         timestamps: false,
 
-        // don't delete database entries but set the newly added attribute deletedAt
+        // Don't delete database entries but set the newly added attribute deletedAt
         // to the current date (when deletion was done). paranoid will only work if
         // timestamps are enabled
         paranoid: true,
@@ -29,14 +32,15 @@ const User = db.define('user', {
         // Does not override attribute with field option already defined
         underscored: true,
 
-        // disable the modification of table names; By default, sequelize will automatically
+        // Disable the modification of table names; By default, sequelize will automatically
         // transform all passed model names (first parameter of define) into plural.
         // if you don't want that, set the following
         freezeTableName: true,
 
-        // define the table's name
+        // Define the table's name
         tableName: 'user',
 
     });
 
+// Export the User Model
 module.exports = User;
