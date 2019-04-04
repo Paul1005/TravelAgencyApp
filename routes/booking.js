@@ -213,7 +213,7 @@ router.post('/edit-booking', (req, res) => {
         newPaymentAmount = newPaymentAmount.toLowerCase();
 
         // Find the row in the User table
-        User.update({
+        Booking.update({
             bookingDate: newBookingDate,
             paymentMethod: newPaymentMethod,
             paymentAmount: newPaymentAmount
