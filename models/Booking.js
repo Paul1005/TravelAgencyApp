@@ -69,16 +69,17 @@ Customer, User, and Flight tables
 */
 Booking.hasMany(Customer, {
     foreignKey: {
-        name: 'customerId',
-        allowNull: false
+        name: 'customerId'
     }
 })
+
 Booking.hasMany(User, {
     foreignKey: {
         name: 'userId',
         allowNull: false
     }
 })
+
 Booking.hasMany(Flight, {
     foreignKey: {
         name: 'flightId',

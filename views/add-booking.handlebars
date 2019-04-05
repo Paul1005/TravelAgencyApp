@@ -2,49 +2,64 @@
   <div class="form-wrap">
     <h1>Add a booking</h1>
     <p>Your contact email will be shared with registered users to apply to your booking</p>
+
+    {{!-- Display errors --}}
     {{#each errors}}
     <div class="error">
       <p>{{text}}</p>
     </div>
     {{/each}}
+
+    {{!-- Add booking form --}}
     <form action="/booking/add-booking" method="POST">
-      {{!-- booking date --}}
+
+      {{!-- Booking date --}}
       <div class="input-group">
         <label for="bookingDate">Booking Date</label>
         <input type="text" name="bookingDate" id="bookingDate" class="input-box" placeholder="eg. Mar-25-2019"
           maxlength="30" value={{bookingDate}}>
       </div>
-      {{!-- payment amount --}}
+
+      {{!-- Payment amount --}}
       <div class="input-group">
         <label for="paymentAmount">Payment Amount</label>
         <input type="number" name="paymentAmount" id="paymentAmount" class="input-box" placeholder="eg. 2500"
           maxlength="30" value={{paymentAmount}}>
       </div>
-      {{!-- payment method --}}
+
+      {{!-- Payment method --}}
       <div class="input-group">
         <label for="paymentMethod">Payment Method</label>
         <input type="text" name="paymentMethod" id="paymentMethod" class="input-box" placeholder="eg. Debit"
           maxlength="30" value={{paymentMethod}}>
       </div>
-      {{!-- flight --}}
+
+      {{!-- Flight --}}
       <div class="input-group">
         <label for="flightId">Flight Id</label>
         <input type="number" name="flightId" id="flightId" class="input-box" placeholder="1" maxlength="30"
           value={{flightId}}>
       </div>
-      {{!-- customer --}}
+
+      {{!-- Customer --}}
       <div class="input-group">
         <label for="customerId">Customer Id</label>
         <input type="number" name="customerId" id="customerId" class="input-box" placeholder="2" maxlength="30"
           value={{customerId}}>
       </div>
-      {{!-- user --}}
+
+      {{!-- User --}}
       <div class="input-group">
         <label for="userId">User</label>
         <input type="number" name="userId" id="userId" class="input-box" placeholder="3" maxlength="30"
           value={{userId}}>
       </div>
+
+      {{!-- Submit button --}}
       <input type="submit" value="Add booking" class="btn btn-reverse">
+
     </form>
+
   </div>
+
 </section>

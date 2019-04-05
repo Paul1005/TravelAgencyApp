@@ -2,7 +2,7 @@
 
 // Use express dpendency
 const express = require('express');
-// Creates a route for the booking table
+// Creates a route for the customer table
 const router = express.Router()
 
 // Use the Customer Model
@@ -15,6 +15,7 @@ const Op = Sequelize.Op;
 
 
 /****************************************** Display all rows in the customer table ********************************/
+
 // Url: /customer
 router.get('/', (req, res) =>
     Customer.findAll()
@@ -95,9 +96,7 @@ router.post('/add-customer', (req, res) => {
 
 /********************************************** Search customers **************************************************/
 /* Search based on:
-    1. booking id only 
-    2. payment amount only (search by all paymentAmount <= searched amount)
-    3. booking date AND payment method
+    1. customer id only 
     4. all attributes together
 */
 router.get('/search', (req, res) => {
@@ -119,19 +118,21 @@ router.get('/search', (req, res) => {
     addressValue = addressValue.toLowerCase();
 
     /* Search by unique customerId */
-    if (customerId != '') {
+    if (customerIdValue != '') {
         Customer.findAll({
             where: {
                 // customerId = customerIdValue
                 customerId: {
-                    [Op.eq]: customerIdValue,
-                    [Op.between]: [0, 100]
+                    [Op.eq]: customerIdValue
                 }
             }
         })
+            // Display the search results if succeed
             .then(customer => res.render('customer', { customer }))
+            // Show errors if not succeed
             .catch(err => console.log(err));
 
+        /* Search by other attributes */
     } else {
         Customer.findAll({
             where: {
@@ -174,20 +175,33 @@ router.get('/search', (req, res) => {
                         [Op.eq]: ''
                     }
                 }
+
             } // End of Where
+
         }) // End of FindAll
+            // Display the search results if succeed
             .then(customer => res.render('customer', { customer }))
+            // Show errors if not succeed
             .catch(err => console.log(err));
-    }); // End of router.get('/search', (req, res)
+    } // End of else 
+
+});// End of router.get('/search', (req, res)
+
 
 /************************************************* Edit booking *************************************************/
-// Display form to edit a user
+
+// Display the form to edit a user
 router.get('/edit-customer', (req, res) => res.render('edit-customer'));
 
 // Edit a user
 router.post('/edit-customer', (req, res) => {
-    // destructure the data object
-    let { existingCustomerId, newFirstName, newLastName, newEmail, newTelephone, newAddress } = req.body;
+    // Destructure the data object
+    let { existingCustomerId,
+        newFirstName,
+        newLastName,
+        newEmail,
+        newTelephone,
+        newAddress } = req.body;
     let errors = [];
 
     // Error handling
@@ -210,7 +224,7 @@ router.post('/edit-customer', (req, res) => {
         errors.push({ text: 'Please add a new address' })
     }
 
-    // Check for errors
+    // Display erros if there is any
     if (errors.length > 0) {
         res.render('edit-customer', {
             errors,
@@ -221,7 +235,7 @@ router.post('/edit-customer', (req, res) => {
             newTelephone,
             newAddress
         });
-    } else {
+    } else { // No errors, then edit a booking
         // Make data lowercase
         existingCustomerId = existingCustomerId.toLowerCase();
         newFirstName = newFirstName.toLowerCase();
@@ -239,29 +253,76 @@ router.post('/edit-customer', (req, res) => {
             address: newAddress
         },
             {
-                // Where clause
+                // Where: customerId = existingCustomerId
                 where: {
                     customerId: existingCustomerId
                 }
             }
         )
-            .then(customer => res.redirect('/customer'))
+            // Redirect back to the customer page if succeed
+            .then(() => res.redirect('/customer'))
+            // Show errors if not succeed
             .catch(err => console.log(err));
+
     } // End of else
-});
+
+}); // End of router.post('/edit-customer', (req, res)
 
 
 /************************************************* Delete booking *************************************************/
+
+// Display the delete form
 router.get('/delete-customer', (req, res) => res.render('delete-customer'));
 
+// Delete a customer
 router.post('/delete-customer', (req, res) => {
+
+    // Destructure the object
     let { customerIdDelete } = req.body;
-    Customer.destroy({
-        where: { customerId: customerIdDelete }
-    })
-        .then(customer => res.redirect('/customer'))
-        .catch(err => console.log(err));
-});
+
+    let errors = [];
+    let successMessage = [];
+
+    // Error handling
+    if (!customerIdDelete) {
+        errors.push({ text: "Please enter an existing customer Id" });
+    }
+
+    // if there is any errors
+    if (errors.length > 0) {
+        res.render('delete-customer', {
+            errors
+        })
+    } else {
+        // Delete a customer
+        Customer.destroy({
+            // Where: bookingId = bokkingIdDelete
+            where: { customerId: customerIdDelete }
+        })
+            // Error handling
+            .then((deletedRecord) => {
+                // If data found and deleted successfully, show a success message
+                if (deletedRecord === 1) {
+                    successMessage.push({ messageText: "Deleted successfully!" })
+                    res.render('delete-customer', {
+                        successMessage
+                    })
+                }
+                // If not found/deleted, show an error message
+                else {
+                    errors.push({ text: "Customer not found. Please try again." });
+                    res.render('delete-customer', {
+                        errors
+                    })
+                }
+            })
+            .catch((error) => {
+                res.status(500).json(error);
+            });
+
+    } // End of else
+
+}); // End of router.post('/delete-customer', (req, res)
 
 
 // Export router

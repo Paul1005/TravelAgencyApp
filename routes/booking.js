@@ -33,7 +33,7 @@ router.get('/add-booking', (req, res) => res.render('add-booking'));
 // Add a booking
 router.post('/add-booking', (req, res) => {
 
-    // destructure the data object
+    // Destructure the data object
     let { bookingDate,
         paymentAmount,
         paymentMethod,
@@ -75,12 +75,15 @@ router.post('/add-booking', (req, res) => {
         });
     } else { // No errors, then create a new booking
 
-        // if there is no payment amount entered, set default to 0
+        // If there is no payment amount entered, set default to 0
         if (!paymentAmount) {
             paymentAmount = 0;
         } else {
             paymentAmount = `${paymentAmount}`;
         }
+
+        // Captitalize booking date
+        bookingDate = bookingDate.charAt(0).toUpperCase() + bookingDate.slice(1);
 
         // Insert data into the booking table
         Booking.create({
@@ -265,11 +268,13 @@ router.post('/edit-booking', (req, res) => {
             }
         )
             // Redirect to the booking page if succeed
-            .then(() => res.redirect('/booking'))
+            .then(booking => res.render('booking', { booking }))
             // Show errors if not succeed
             .catch(err => console.log(err));
+
     } // End of else
-});
+
+}); // End of router.post('/edit-booking', (req, res)
 
 
 /************************************************* Delete booking *************************************************/
@@ -281,18 +286,52 @@ router.get('/delete-booking', (req, res) => res.render('delete-booking'));
 router.post('/delete-booking', (req, res) => {
 
     // Destructure the object
-    let { bookingIddelete } = req.body;
+    let { bookingIdDelete } = req.body;
 
-    // Delete a booking
-    Booking.destroy({
-        // Where: bookingId = bokkingIdDelete
-        where: { bookingId: bookingIddelete }
-    })
-        // Redirect to the booking page if succeed
-        .then(() => res.redirect('/booking'))
-        // Show errors if not succeed
-        .catch(err => console.log(err));
-});
+    let errors = [];
+    let successMessage = [];
+
+    // Error handling
+    if (!bookingIdDelete) {
+        errors.push({ text: "Please enter an existing booking Id" });
+
+    }
+
+    // if there is any errors
+    if (errors.length > 0) {
+        res.render('delete-booking', {
+            errors
+        })
+    } else {
+        // Delete a booking
+        Booking.destroy({
+            // Where: bookingId = bokkingIdDelete
+            where: { bookingId: bookingIdDelete }
+        })
+            // Error handling
+            .then((deletedRecord) => {
+                // If data found and deleted successfully, show a success message
+                if (deletedRecord === 1) {
+                    successMessage.push({ messageText: "Deleted successfully!" })
+                    res.render('delete-booking', {
+                        successMessage
+                    })
+                }
+                // If not found/deleted, show an error message
+                else {
+                    errors.push({ text: "Booking not found. Please try again." });
+                    res.render('delete-booking', {
+                        errors
+                    })
+                }
+            })
+            .catch((error) => {
+                res.status(500).json(error);
+            });
+
+    } // End of else
+
+}); // End of router.post('/delete-booking', (req, res)
 
 // Export the router
 module.exports = router;

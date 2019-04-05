@@ -45,6 +45,12 @@ a:hover {
   margin-bottom: 15px;
 }
 
+.message {
+  padding: 5px;
+  border: #777 dotted 1px;
+  margin-bottom: 15px;
+}
+
 /* Header */
 header {
   display: flex;
@@ -144,7 +150,7 @@ header.inner {
   padding: 0 2rem;
   border-radius: 0.25rem;
   cursor: pointer;
-  margin-left: 235px;
+  margin-left: 230px;
   margin-bottom: 10px;
   transition: all 2s;
 }

@@ -1,5 +1,6 @@
 <section id="search" class="search-wrap">
   <h1>Find a customer</h1>
+
   {{!-- Search form for the customer table --}}
   <form action="/customer/search" class="search-form bg-white">
     <i class="fas fa-search"></i>
@@ -57,29 +58,34 @@
     {{!-- Submit button --}}
     <input type="submit" value="Search">
 
-    {{!-- Button to add a customer --}}
+    {{!-- Button to add/edit/delte a customer --}}
     <div class="d-flex justify-content-between">
+
       {{!-- Add a customer --}}
       <button class="btn btn-info btn-md add-button">
         <a href="customer/add-customer">
           Add a customer
         </a>
       </button>
+
       {{!-- Edit a customer --}}
       <button class="btn btn-info btn-md add-button">
         <a href="customer/edit-customer">
           Edit a customer
         </a>
       </button>
+
       {{!-- Delete a customer --}}
       <button class="btn btn-info btn-md add-button">
         <a href="customer/delete-customer">
           Delete a customer
         </a>
       </button>
+
     </div>
 
   </form>
+
 </section>
 
 <section id="customer" class="container">
@@ -97,8 +103,6 @@
       <li>Address: {{address}}</li>
     </ul>
 
-    {{!-- add onclick function --}}
-    {{!-- <p><button class="btn" onclick="editCustomer({{customerId}})">Edit</button></p> --}}
   </div>
 
   {{else}}

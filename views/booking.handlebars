@@ -1,7 +1,7 @@
 <section id="search" class="search-wrap">
   <h1>Find a booking</h1>
 
-  {{!-- Search form for the booking table --}}
+  {{!-- Search form for booking table --}}
   <form action="/booking/search" class="search-form bg-white">
     <i class="fas fa-search"></i>
 
@@ -43,33 +43,37 @@
     {{!-- Submit button --}}
     <input type="submit" value="Search">
 
-    {{!-- Button to add a booking --}}
+    {{!-- Button to add/edit/delete a booking --}}
     <div class="d-flex justify-content-between">
+
       {{!-- Add a booking --}}
       <button class="btn btn-info btn-md add-button">
         <a href="booking/add-booking">
           Add a booking
         </a>
       </button>
+
       {{!-- Edit a booking --}}
       <button class="btn btn-info btn-md add-button">
         <a href="booking/edit-booking">
           Edit a booking
         </a>
       </button>
+
       {{!-- Delete a booking --}}
       <button class="btn btn-info btn-md add-button">
         <a href="booking/delete-booking">
           Delete a booking
         </a>
       </button>
-    </div>
 
+    </div>
 
   </form>
 
 </section>
 
+{{!-- Display rows in the booking table --}}
 <section id="booking" class="container">
   <h1>All bookings</h1>
 
@@ -83,8 +87,6 @@
       <li>user ID: {{userId}}</li>
       <li>customer ID: {{customerId}}</li>
       <li>flight ID: {{flightId}}</li>
-      {{!-- <button onclick = {{ deletebooking bookingId }}>delete</button> --}}
-
     </ul>
   </div>
 
@@ -94,12 +96,3 @@
   {{/each}}
 
 </section>
-
-{{!-- <script>
-  const Handlebars = require('handlebars');
-  Handlebars.registerHelper('createButton', function () {
-    let row = document.getElementsByClassName("app");
-    let button = document.createElement("button");
-    row.appendChild(button);
-  });
-</script> --}}

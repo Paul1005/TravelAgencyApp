@@ -3,6 +3,7 @@ const Sequelize = require('sequelize');
 // Use database 
 const db = require('../config/database');
 
+
 // Define the User Model
 const User = db.define('user', {
     /* 3 attributes */
@@ -41,6 +42,10 @@ const User = db.define('user', {
         tableName: 'user',
 
     });
+
+User.associate = models => {
+    User.hasMany(models.Booking, { through: 'userId' });
+};
 
 // Export the User Model
 module.exports = User;

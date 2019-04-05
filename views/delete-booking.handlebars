@@ -1,17 +1,39 @@
 <section id="delete" class="container">
   <div class="form-wrap">
-    <h1>delete a booking</h1>
+    <h1>Delete a booking</h1>
+
+    {{!-- Display errors here --}}
     {{#each errors}}
     <div class="error">
       <p>{{text}}</p>
     </div>
     {{/each}}
+
+    {{!-- Display success message here --}}
+    {{#each successMessage}}
+    <div class="error">
+      <p>{{messageText}}</p>
+    </div>
+    {{/each}}
+
+    {{!-- Delete booking form --}}
     <form action="/booking/delete-booking" method="POST">
-      {{!-- booking date --}}
+
+      {{!-- booking Id --}}
       <div class="input-group">
         <label for="bookingIdDelete">Booking Id</label>
         <input type="text" name="bookingIdDelete" id="bookingIdDelete" class="input-box" placeholder="eg. 1"
-          maxlength="30" value={{bookingId}}>
+          maxlength="30">
       </div>
+
+      {{!-- Submit button --}}
       <input type="submit" value="Delete booking" class="btn btn-reverse">
+
+      {{!-- Back button --}}
+      <button class="btn btn-info btn-md add-button">
+        <a href="/booking">
+          Back to Booking
+        </a>
+      </button>
+
 </section>
