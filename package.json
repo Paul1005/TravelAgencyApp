@@ -35,6 +35,8 @@
     "yarn": "^1.13.0"
   },
   "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-google": "^0.12.0",
     "nodemon": "^1.18.10"
   }
 }

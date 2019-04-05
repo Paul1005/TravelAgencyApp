@@ -1,11 +1,21 @@
+/* eslint-disable no-console */
+
+// Use express dpendency
 const express = require('express');
+// Creates a route for the booking table
 const router = express.Router()
-const db = require('../config/database');
+
+// Use the Customer Model
 const Customer = require('../models/Customer');
+
+// Use sequelize dependency
 const Sequelize = require('sequelize');
+// Use sequelize operators
 const Op = Sequelize.Op;
 
+
 /****************************************** Display all rows in the customer table ********************************/
+// Url: /customer
 router.get('/', (req, res) =>
     Customer.findAll()
         .then(customer => {
@@ -15,33 +25,40 @@ router.get('/', (req, res) =>
         })
         .catch(err => console.log(err)));
 
+
 /********************************************* Add a new customer *************************************************/
+
 // Display form to add a new customer
 router.get('/add-customer', (req, res) => res.render('add-customer'));
 
 // Add a customer
 router.post('/add-customer', (req, res) => {
     // destructure the data object
-    let { firstName, lastName, email, telephone, address } = req.body;
+    let { firstName,
+        lastName,
+        email,
+        telephone,
+        address } = req.body;
     let errors = [];
 
+    // Error handling
     if (!firstName) {
-        errors.push({ text: 'Please add a first name' })
+        errors.push({ text: 'Please add first name' })
     }
     if (!lastName) {
-        errors.push({ text: 'Please add a last name' })
+        errors.push({ text: 'Please add last name' })
     }
     if (!email) {
-        errors.push({ text: 'Please add an email' })
+        errors.push({ text: 'Please add email' })
     }
     if (!telephone) {
-        errors.push({ text: 'Please add a telephone' })
+        errors.push({ text: 'Please add telephone' })
     }
     if (!address) {
-        errors.push({ text: 'Please add an address' })
+        errors.push({ text: 'Please add address' })
     }
 
-    // Check for errors
+    // Display erros if there is any
     if (errors.length > 0) {
         res.render('add-customer', {
             errors,
@@ -51,7 +68,7 @@ router.post('/add-customer', (req, res) => {
             telephone,
             address
         });
-    } else {
+    } else { // No errors, then create a new customer
 
         // Make data lowercase
         firstName = firstName.toLowerCase();
@@ -68,14 +85,23 @@ router.post('/add-customer', (req, res) => {
             telephone,
             address
         })
-            .then(customer => res.redirect('/customer'))
+            // redirect back to the customer page showing all the rows if succeed
+            .then(() => res.redirect('/customer'))
+            // show errors if adding not succeed
             .catch(err => console.log(err));
     }
 });
 
 
 /********************************************** Search customers **************************************************/
+/* Search based on:
+    1. booking id only 
+    2. payment amount only (search by all paymentAmount <= searched amount)
+    3. booking date AND payment method
+    4. all attributes together
+*/
 router.get('/search', (req, res) => {
+
     // Destructure querry object
     let { customerIdValue } = req.query;
     let { firstNameValue } = req.query;
@@ -84,7 +110,7 @@ router.get('/search', (req, res) => {
     let { telephoneValue } = req.query;
     let { addressValue } = req.query;
 
-    // Make lowercase
+    // Make Lowercase
     customerIdValue = customerIdValue.toLowerCase();
     firstNameValue = firstNameValue.toLowerCase();
     lastNameValue = lastNameValue.toLowerCase();
@@ -92,55 +118,67 @@ router.get('/search', (req, res) => {
     telephoneValue = telephoneValue.toLowerCase();
     addressValue = addressValue.toLowerCase();
 
-    Customer.findAll({
-        where: {
-            // customerId = customerIdValue
-            customerId: {
-                [Op.or]: {
+    /* Search by unique customerId */
+    if (customerId != '') {
+        Customer.findAll({
+            where: {
+                // customerId = customerIdValue
+                customerId: {
                     [Op.eq]: customerIdValue,
                     [Op.between]: [0, 100]
                 }
-            }, // AND
-            // Results contains firstNameValue OR firstNameValue = ''
-            firstName: {
-                [Op.or]: {
-                    [Op.like]: '%' + firstNameValue + '%',
-                    [Op.eq]: ''
-                }
-            }, // AND
-            // Results contains lastNameValue OR lastNameValue = ''
-            lastName: {
-                [Op.or]: {
-                    [Op.like]: '%' + lastNameValue + '%',
-                    [Op.eq]: ''
-                }
-            }, // AND
-            // Results contains emailValue OR emailValue = ''
-            email: {
-                [Op.or]: {
-                    [Op.like]: '%' + emailValue + '%',
-                    [Op.eq]: ''
-                }
-            }, // AND
-            // Results contains emailValue OR emailValue = ''
-            telephone: {
-                [Op.or]: {
-                    [Op.like]: '%' + telephoneValue + '%',
-                    [Op.eq]: ''
-                }
-            }, // AND 
-            // Results contains addressValue OR addressValue = ''
-            address: {
-                [Op.or]: {
-                    [Op.like]: '%' + addressValue + '%',
-                    [Op.eq]: ''
-                }
             }
-        } // End of Where
-    }) // End of FindAll
-        .then(customer => res.render('customer', { customer }))
-        .catch(err => console.log(err));
-}); // End of router.get('/search', (req, res)
+        })
+            .then(customer => res.render('customer', { customer }))
+            .catch(err => console.log(err));
+
+    } else {
+        Customer.findAll({
+            where: {
+                // customerId = [1, 1000]
+                customerId: {
+                    [Op.between]: [1, 1000]
+                }, // AND
+                // Results contains firstNameValue OR firstNameValue = ''
+                firstName: {
+                    [Op.or]: {
+                        [Op.like]: '%' + firstNameValue + '%',
+                        [Op.eq]: ''
+                    }
+                }, // AND
+                // Results contains lastNameValue OR lastNameValue = ''
+                lastName: {
+                    [Op.or]: {
+                        [Op.like]: '%' + lastNameValue + '%',
+                        [Op.eq]: ''
+                    }
+                }, // AND
+                // Results contains emailValue OR emailValue = ''
+                email: {
+                    [Op.or]: {
+                        [Op.like]: '%' + emailValue + '%',
+                        [Op.eq]: ''
+                    }
+                }, // AND
+                // Results contains emailValue OR emailValue = ''
+                telephone: {
+                    [Op.or]: {
+                        [Op.like]: '%' + telephoneValue + '%',
+                        [Op.eq]: ''
+                    }
+                }, // AND 
+                // Results contains addressValue OR addressValue = ''
+                address: {
+                    [Op.or]: {
+                        [Op.like]: '%' + addressValue + '%',
+                        [Op.eq]: ''
+                    }
+                }
+            } // End of Where
+        }) // End of FindAll
+            .then(customer => res.render('customer', { customer }))
+            .catch(err => console.log(err));
+    }); // End of router.get('/search', (req, res)
 
 /************************************************* Edit booking *************************************************/
 // Display form to edit a user
