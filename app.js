@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // Use express dependency
 const express = require('express');
 // Use express-handlebars dependency
@@ -18,10 +19,12 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Set PORT
+// eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
 
 // Set static folder
+// eslint-disable-next-line no-undef
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Use Database

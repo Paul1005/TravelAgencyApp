@@ -188,7 +188,7 @@ router.get('/search', (req, res) => {
 });// End of router.get('/search', (req, res)
 
 
-/************************************************* Edit booking *************************************************/
+/************************************************* Edit a customer *************************************************/
 
 // Display the form to edit a user
 router.get('/edit-customer', (req, res) => res.render('edit-customer'));
@@ -269,7 +269,7 @@ router.post('/edit-customer', (req, res) => {
 }); // End of router.post('/edit-customer', (req, res)
 
 
-/************************************************* Delete booking *************************************************/
+/************************************************* Delete a customer *************************************************/
 
 // Display the delete form
 router.get('/delete-customer', (req, res) => res.render('delete-customer'));

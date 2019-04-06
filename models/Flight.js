@@ -3,7 +3,6 @@ const Sequelize = require('sequelize');
 // Use database 
 const db = require('../config/database');
 
-
 // Define the Flight Model
 const Flight = db.define('flight', {
     // 7 attributes
@@ -59,8 +58,11 @@ const Flight = db.define('flight', {
 
     })
 
-Flight.associate = models => {
-    Flight.belongsToMany(models.Booking, { through: 'flightId' });
+// 1:M relationship with Booking
+Flight.associate = function (models) {
+    models.Flight.hasMany(models.Booking, {
+        foreignKey: 'flightId'
+    });
 };
 
 // Export the Flight Model

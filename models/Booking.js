@@ -2,12 +2,6 @@
 const Sequelize = require('sequelize');
 // Use database
 const db = require('../config/database');
-// Use Customer Model
-const Customer = require('./Customer');
-// Use Flight Model
-const Flight = require('./Flight');
-// Use User Model
-const User = require('./User');
 
 // Define the Booking Model 
 const Booking = db.define('booking', {
@@ -63,29 +57,26 @@ const Booking = db.define('booking', {
         tableName: 'booking',
     });
 
-/* 
-Foreign keys, set up many to many relationships with
-Customer, User, and Flight tables 
-*/
-Booking.hasMany(Customer, {
-    foreignKey: {
-        name: 'customerId'
-    }
-})
+Booking.associate = function (models) {
+    models.Booking.belongsTo(models.Customer, {
+        onDelete: "CASCADE",
+        foreignKey: 'customerId'
+    });
+};
 
-Booking.hasMany(User, {
-    foreignKey: {
-        name: 'userId',
-        allowNull: false
-    }
-})
+Booking.associate = function (models) {
+    models.Booking.belongsTo(models.Flight, {
+        onDelete: "CASCADE",
+        foreignKey: 'flightId'
+    });
+}
 
-Booking.hasMany(Flight, {
-    foreignKey: {
-        name: 'flightId',
-        allowNull: false
-    }
-})
+Booking.associate = function (models) {
+    models.Booking.belongsTo(models.User, {
+        onDelete: "CASCADE",
+        foreignKey: 'userId'
+    });
+}
 
 // Export the Booking Model
 module.exports = Booking;
