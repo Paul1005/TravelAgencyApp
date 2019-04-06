@@ -23,18 +23,18 @@ const Booking = db.define('booking', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    userId: { // Integer, NOT NULL
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    customerId: { // Integer, NOT NULL
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    flightId: { // Integer, NOT NULL
-        type: Sequelize.INTEGER,
-        allowNull: false
-    }
+    // userId: { // Integer, NOT NULL
+    //     type: Sequelize.INTEGER,
+    //     allowNull: false
+    // },
+    // customerId: { // Integer, NOT NULL
+    //     type: Sequelize.INTEGER,
+    //     allowNull: false
+    // },
+    // flightId: { // Integer, NOT NULL
+    //     type: Sequelize.INTEGER,
+    //     allowNull: false
+    // }
 }, {
         // Don't add the timestamp attributes (updatedAt, createdAt)
         timestamps: false,
@@ -60,21 +60,28 @@ const Booking = db.define('booking', {
 Booking.associate = function (models) {
     models.Booking.belongsTo(models.Customer, {
         onDelete: "CASCADE",
-        foreignKey: 'customerId'
+        hooks: true,
+        foreignKey: 'customerId',
+        targetKey: 'custmoerid',
+        constraints: false
     });
-};
+}
 
 Booking.associate = function (models) {
     models.Booking.belongsTo(models.Flight, {
         onDelete: "CASCADE",
-        foreignKey: 'flightId'
+        foreignKey: 'flightId',
+        targetKey: 'flightid',
+        constraints: false
     });
 }
 
 Booking.associate = function (models) {
     models.Booking.belongsTo(models.User, {
         onDelete: "CASCADE",
-        foreignKey: 'userId'
+        foreignKey: 'userId',
+        targetKey: 'userid',
+        constraints: false
     });
 }
 
