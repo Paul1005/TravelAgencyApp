@@ -280,6 +280,7 @@ router.post('/delete-customer', (req, res) => {
     // Destructure the object
     let { customerIdDelete } = req.body;
 
+    // Arrays to store messages as objects
     let errors = [];
     let successMessage = [];
 
@@ -288,12 +289,12 @@ router.post('/delete-customer', (req, res) => {
         errors.push({ text: "Please enter an existing customer Id" });
     }
 
-    // if there is any errors
+    // If there is any error
     if (errors.length > 0) {
         res.render('delete-customer', {
             errors
         })
-    } else {
+    } else { // If there is no error
         // Delete a customer
         Customer.destroy({
             // Where: bookingId = bokkingIdDelete

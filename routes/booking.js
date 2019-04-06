@@ -282,7 +282,7 @@ router.post('/edit-booking', (req, res) => {
 // Display the delete form
 router.get('/delete-booking', (req, res) => res.render('delete-booking'));
 
-// Delete a booking
+// Delete
 router.post('/delete-booking', (req, res) => {
 
     // Destructure the object
@@ -297,12 +297,12 @@ router.post('/delete-booking', (req, res) => {
 
     }
 
-    // if there is any errors
+    // If there is any error
     if (errors.length > 0) {
         res.render('delete-booking', {
             errors
         })
-    } else {
+    } else { // If there is no error
         // Delete a booking
         Booking.destroy({
             // Where: bookingId = bokkingIdDelete
