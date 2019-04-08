@@ -171,12 +171,12 @@ router.get('/search', (req, res) => {
             .catch(err => console.log(err));
 
         /* search by specified booking date AND payment method */
-    } else if (paymentAmountValue == '') {
+    } else if (paymentMethodValue !='' || bookingDateValue !='') {
         Booking.findAll({
             where: {
                 // bookingId = [0, 100]
                 bookingId: {
-                    [Op.between]: [1, 100]
+                    [Op.between]: [1, 1000]
                 }, // AND
                 // Results contains bookingDateValue OR bookingDateValue = ''
                 bookingDate: {
