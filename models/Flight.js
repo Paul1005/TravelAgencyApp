@@ -61,6 +61,8 @@ const Flight = db.define('flight', {
 // 1:M relationship with Booking
 Flight.associate = function (models) {
     models.Flight.hasMany(models.Booking, {
+        onDelete: "CASCADE",
+        hooks: true,
         foreignKey: 'flightId'
     });
 };

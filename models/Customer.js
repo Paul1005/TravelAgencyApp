@@ -57,11 +57,7 @@ const Customer = db.define('customer', {
 // 1:M relationship with Booking
 Customer.associate = function (models) {
     models.Customer.hasMany(models.Booking, {
-        onDelete: "CASCADE",
-        hooks: true,
-        foreignKey: 'customerId',
-        sourceKey: 'custmoerid',
-        constraints: false
+        foreignKey: 'customerId'
     });
 }
 

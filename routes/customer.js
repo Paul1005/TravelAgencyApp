@@ -7,6 +7,7 @@ const router = express.Router()
 
 // Use the Customer Model
 const Customer = require('../models/Customer');
+const Booking = require('../models/Booking');
 
 // Use sequelize dependency
 const Sequelize = require('sequelize');
@@ -296,6 +297,13 @@ router.post('/delete-customer', (req, res) => {
         })
     } else { // If there is no error
         // Delete a customer
+
+        // Delete from the Booking table first
+        Booking.destroy({
+            where: { customerId: customerIdDelete }
+        })
+        
+        // Delete from the Customer table second
         Customer.destroy({
             // Where: bookingId = bokkingIdDelete
             where: { customerId: customerIdDelete }
