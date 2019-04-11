@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router()
 const db = require('../config/database');
 const Customer = require('../models/Customer');
+const Booking = require('../models/Booking');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
@@ -261,13 +262,18 @@ router.post('/edit-customer', (req, res) => {
 });
 
 
-/************************************************* Delete booking *************************************************/
+/************************************************* Delete Customer *************************************************/
 router.get('/delete-customer', (req, res) => res.render('delete-customer'));
 
 router.post('/delete-customer', (req, res) => {
     let {
         customerIdDelete
     } = req.body;
+    Booking.destroy({
+        where: {
+            customerId: customerIdDelete
+        }
+    })
     Customer.destroy({
             where: {
                 customerId: customerIdDelete
